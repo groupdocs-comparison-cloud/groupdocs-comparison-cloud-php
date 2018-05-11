@@ -65,91 +65,90 @@ $configuration->setAppKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 $comparisonApi = new ComparisonApi($configuration);
 
-try {
-  $request = new  Requests\ComparisonStreamRequest($this->GetComparisonRequest('source.docx',array('source.docx')));
-  $response = $comparisonApi->comparisonStream($request);
-  echo  $response;
-  } catch (Exception $e) {
-  echo  "Something went wrong: ",  $e->getMessage(), "\n";
-  PHP_EOL;
-}
-
- public  function  GetComparisonRequest($sourceNAme, array $targetNames){
+try { 
 
         $targetArray = array();
+        $targetNames = array('target.docx');
         foreach ($targetNames as $targetName){
             array_push($targetArray,new ComparisonFileInfo(
                 [
-                    'folder' => '',
+                    'folder' => 'comparison',
                     'name' => $targetName,
                     'password' => ''
                 ]
             ));
         }
 
-        return  new ComparisonRequest([
-                'sourceFile'=>new ComparisonFileInfo(
-                    [
-                        'folder' => '',
-                        'name' => $sourceNAme,
-                        'password' => ''
-                    ]
-                ),
-                'targetFiles'=> $targetArray,
-                'settings'=> new ComparisonRequestSettings(
-                    [
-                        'generateSummaryPage'=>true,
-                        'showDeletedContent'=>true,
-                        'styleChangeDetection'=>true,
-                        'insertedItemsStyle' => new StyleSettingsValues(
-                            [
-                                'color' => new Color([
-                                    'blue'
-                                ]),
-                                'beginSeparatorString' => '',
-                                'endSeparatorString' => ''
-                            ]
-                        ),
-                        'deletedItemsStyle' => new StyleSettingsValues(
-                            [
-                                'color' => new Color([
-                                    'red'
-                                ]),
-                                'beginSeparatorString' => '',
-                                'endSeparatorString' => ''
-                            ]
-                        ),
-                        'styleChangedItemsStyle' => new StyleSettingsValues(
-                            [
-                                'color' => new Color([
-                                    'green'
-                                ]),
-                                'beginSeparatorString' => '',
-                                'endSeparatorString' => ''
-                            ]
-                        ),
-                        'markDeletedInsertedContentDeep'=>true,
-                        'calculateComponentCoordinates'=>true,
-                        'useFramesForDelInsElements'=>true,
-                        'wordsSeparatorChars' => array(),
-                        'metaData' => new ComparisonMetadataValues(
+        $request = new Requests\ComparisonRequest(new ComparisonRequest([
+            'sourceFile'=>new ComparisonFileInfo(
+                [
+                    'folder' => '',
+                    'name' => 'source.docx',
+                    'password' => ''
+                ]
+            ),
+            'targetFiles'=> $targetArray,
+            'settings'=> new ComparisonRequestSettings(
+                [
+                    'generateSummaryPage'=>true,
+                    'showDeletedContent'=>true,
+                    'styleChangeDetection'=>true,
+                    'insertedItemsStyle' => new StyleSettingsValues(
+                        [
+                            'color' => new Color([
+                                'blue'
+                            ]),
+                            'beginSeparatorString' => '',
+                            'endSeparatorString' => ''
+                        ]
+                    ),
+                    'deletedItemsStyle' => new StyleSettingsValues(
+                        [
+                            'color' => new Color([
+                                'red'
+                            ]),
+                            'beginSeparatorString' => '',
+                            'endSeparatorString' => ''
+                        ]
+                    ),
+                    'styleChangedItemsStyle' => new StyleSettingsValues(
+                        [
+                            'color' => new Color([
+                                'green'
+                            ]),
+                            'beginSeparatorString' => '',
+                            'endSeparatorString' => ''
+                        ]
+                    ),
+                    'markDeletedInsertedContentDeep'=>true,
+                    'calculateComponentCoordinates'=>true,
+                    'useFramesForDelInsElements'=>true,
+                    'wordsSeparatorChars' => array(),
+                    'metaData' => new ComparisonMetadataValues(
 
-                        ),
-                        'cloneMetadata' => "Source",
-                        'passwordSaveOption' => "User",
-                        'password'=>"1111",
-                        'detailLevel' => "Low",
+                    ),
+                    'cloneMetadata' => "Source",
+                    'passwordSaveOption' => "User",
+                    'password'=>"1111",
+                    'detailLevel' => "Low",
 
-                    ]
-                ),
-                'changes'=>array(new ComparisonChange([
-                    'id' => 0,
-                    'action' => 'Accept'
-                ]))
-            ]
-
+                ]
+            ),
+            'changes'=>array(new ComparisonChange([
+                'id' => 0,
+                'action' => 'Accept'
+            ]))
+        ]),
+            'result.docx'
         );
-    }
+
+        $response = $comparisonApi->comparison($request);
+        echo  $response;
+  } catch (Exception $e) {
+        echo  "Error message: ",  $e->getMessage(), "\n";
+  PHP_EOL;
+}
+
 
 ?>
 ```
