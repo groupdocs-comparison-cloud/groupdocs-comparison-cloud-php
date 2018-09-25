@@ -158,10 +158,10 @@ GroupDocs.Comparison for Cloud SDK for PHP is licensed under [MIT License](LICEN
 
 ## Resources
 + [**Website**](https://www.groupdocs.cloud)
-+ [**Product Home**](https://products.groupdocs.cloud/comparison/cloud)
++ [**Product Home**](https://products.groupdocs.cloud/comparison)
 + [**Documentation**](https://docs.groupdocs.cloud/display/comparisoncloud/Home)
 + [**Free Support Forum**](https://forum.groupdocs.cloud/c/comparison)
-+ [**Blog**](https://blog.groupdocs.cloud/category/groupdocs-comparison-cloud-product-family)
++ [**Blog**](https://blog.groupdocs.cloud/category/comparison)
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/comparison).
