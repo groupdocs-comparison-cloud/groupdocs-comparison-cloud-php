@@ -1,11 +1,11 @@
 # GroupDocs.Comparison Cloud SDK for PHP
-This repository contains GroupDocs.Comparison Cloud SDK for PHP source code. This SDK allows you to work with GroupDocs.Annotaion Cloud REST APIs in your PHP applications.
+This repository contains GroupDocs.Comparison Cloud SDK for PHP source code. This SDK allows you to work with GroupDocs.Comparison Cloud REST APIs in your PHP applications.
 
 ## Dependencies
 - PHP 5.5 or later
 
 ## Authorization
-To use SDK you need AppSID and AppKey authorization keys. You can your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).  
+To use SDK you need AppSID and AppKey authorization keys. You can get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).  
 
 ## Installation & Usage
 ### Composer
@@ -22,7 +22,7 @@ Or you can install SDK via [Composer](http://getcomposer.org/) directly from thi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/groupdocs-comparison-cloud/groupdocs-comparison-cloud-php"
+      "url": "https://github.com/groupdocs-comparison-cloud/groupdocs-comparison-cloud-php.git"
     }
   ],
   "require": {
@@ -43,10 +43,10 @@ require_once('/path/to/groupdocs-comparison-cloud-php/vendor/autoload.php');
 
 ## Tests
 
-To run the unit tests set your AppSID and AppKey in [json.config](tests/GroupDocs/Annotaion/config.json) and execute following commands:
+To run the unit tests set your AppSID and AppKey in [json.config](tests/GroupDocs/Comparison/config.json) and execute following commands:
 
 ```
-composer install
+php composer.phar install
 ./vendor/bin/phpunit
 ```
 
@@ -59,102 +59,28 @@ Please follow the [installation procedure](#installation--usage) and then run th
 require_once(__DIR__ . '/vendor/autoload.php');
 
 //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).
-$configuration = new Configuration();
+$configuration = new GroupDocs\Comparison\Configuration();
 $configuration->setAppSid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");
 $configuration->setAppKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-$comparisonApi = new ComparisonApi($configuration);
+$infoApi = new GroupDocs\Comparison\InfoApi($configuration); 
 
-try { 
+try {
+    $response = $infoApi->getSupportedFileFormats();
 
-        $targetArray = array();
-        $targetNames = array('target.docx');
-        foreach ($targetNames as $targetName){
-            array_push($targetArray,new ComparisonFileInfo(
-                [
-                    'folder' => 'comparison',
-                    'name' => $targetName,
-                    'password' => ''
-                ]
-            ));
-        }
-
-        $request = new Requests\ComparisonRequest(new ComparisonRequest([
-            'sourceFile'=>new ComparisonFileInfo(
-                [
-                    'folder' => '',
-                    'name' => 'source.docx',
-                    'password' => ''
-                ]
-            ),
-            'targetFiles'=> $targetArray,
-            'settings'=> new ComparisonRequestSettings(
-                [
-                    'generateSummaryPage'=>true,
-                    'showDeletedContent'=>true,
-                    'styleChangeDetection'=>true,
-                    'insertedItemsStyle' => new StyleSettingsValues(
-                        [
-                            'color' => new Color([
-                                'blue'
-                            ]),
-                            'beginSeparatorString' => '',
-                            'endSeparatorString' => ''
-                        ]
-                    ),
-                    'deletedItemsStyle' => new StyleSettingsValues(
-                        [
-                            'color' => new Color([
-                                'red'
-                            ]),
-                            'beginSeparatorString' => '',
-                            'endSeparatorString' => ''
-                        ]
-                    ),
-                    'styleChangedItemsStyle' => new StyleSettingsValues(
-                        [
-                            'color' => new Color([
-                                'green'
-                            ]),
-                            'beginSeparatorString' => '',
-                            'endSeparatorString' => ''
-                        ]
-                    ),
-                    'markDeletedInsertedContentDeep'=>true,
-                    'calculateComponentCoordinates'=>true,
-                    'useFramesForDelInsElements'=>true,
-                    'wordsSeparatorChars' => array(),
-                    'metaData' => new ComparisonMetadataValues(
-
-                    ),
-                    'cloneMetadata' => "Source",
-                    'passwordSaveOption' => "User",
-                    'password'=>"1111",
-                    'detailLevel' => "Low",
-
-                ]
-            ),
-            'changes'=>array(new ComparisonChange([
-                'id' => 0,
-                'action' => 'Accept'
-            ]))
-        ]),
-            'result.docx'
-        );
-
-        $response = $comparisonApi->comparison($request);
-        echo  $response;
-  } catch (Exception $e) {
-        echo  "Error message: ",  $e->getMessage(), "\n";
-  PHP_EOL;
+    foreach ($response->getFormats() as $key => $format) {
+        echo $format->getFileFormat() . " - " .  $format->getExtension(), "\n";
+    }
+} catch (Exception $e) {
+    echo  "Something went wrong: ",  $e->getMessage(), "\n";
+    PHP_EOL;
 }
-
 
 ?>
 ```
 
 ## Licensing
-GroupDocs.Comparison for Cloud SDK for PHP is licensed under [MIT License](LICENSE).
+GroupDocs.Comparison Cloud SDK for PHP is licensed under [MIT License](LICENSE).
 
 ## Resources
 + [**Website**](https://www.groupdocs.cloud)

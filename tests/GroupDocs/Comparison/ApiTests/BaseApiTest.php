@@ -2,7 +2,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="BaseApiTest.php">
-*   Copyright (c) 2003-2018 Aspose Pty Ltd
+*   Copyright (c) 2003-2019 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,32 +28,41 @@
 namespace GroupDocs\Comparison\ApiTests;
 
 use PHPUnit\Framework\TestCase;
-use Aspose\Storage\StorageApi;
 use GroupDocs\Comparison\Configuration;
-use GroupDocs\Comparison\ComparisonApi;
-use GroupDocs\Comparison\ChangesApi;
+use GroupDocs\Comparison\InfoApi;
+use GroupDocs\Comparison\CompareApi;
+use GroupDocs\Comparison\StorageApi;
+use GroupDocs\Comparison\FileApi;
+use GroupDocs\Comparison\FolderApi;
+use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
+
+require_once "Internal\TestFiles.php";
 
 abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
 {
-    protected static $config;
-    protected static $ComparisonApi;
-    protected static $ChangesApi;
-    protected static $storageApi;
+    protected static $comparisonConfig;
 
-    protected static $testFilesUploaded;
+    protected static $infoApi;
+    protected static $compareApi;
+    protected static $storageApi;
+    protected static $fileApi;
+    protected static $folderApi;
+    
+    protected static $testFilesUploaded = false;
 
     /**
      * Cleanup after each test case
      */
     public function tearDown()
     {
-        self::_removeTempFiles();
+        self::_deleteFolder("resultFilePath");        
     }
 
-    private static function _removeTempFiles()
+    private static function _deleteFolder($folder)
     {
-        self::$storageApi->DeleteFolder("cache", null, "true");
-        self::$storageApi->DeleteFolder("tests", null, "true");
+        $request = new \GroupDocs\Comparison\Model\Requests\deleteFolderRequest($folder, null, true);
+
+        self::$folderApi->DeleteFolder($request);
     }
 
     /**
@@ -66,30 +75,30 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
 
     private static function _initTests()
     {
-        $config = self::_getConfig();
+        $config = self::getConfig();
 
         //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud 
         //      (free registration is required).
+
         $appSid = $config["AppSID"];
         $appKey = $config["AppKey"];
         $apiBaseUrl = $config["ApiBaseUrl"];
 
-        self::$storageApi = new StorageApi();
-        self::$storageApi->apiClient->appSid = $appSid;
-        self::$storageApi->apiClient->apiKey = $appKey;
-        self::$storageApi->apiClient->apiServer = $apiBaseUrl . "/v1";
+        self::$comparisonConfig = new Configuration();
+        self::$comparisonConfig->setAppSid($appSid);
+        self::$comparisonConfig->setAppKey($appKey);
+        self::$comparisonConfig->setApiBaseUrl($apiBaseUrl);
 
-        self::$config = new Configuration();
-        self::$config->setAppSid($appSid);
-        self::$config->setAppKey($appKey);
-        self::$config->setHost($apiBaseUrl);
-        self::$ComparisonApi = new ComparisonApi(self::$config);
-        self::$ChangesApi = new ChangesApi(self::$config);
+        self::$infoApi = new InfoApi(self::$comparisonConfig);
+        self::$compareApi = new CompareApi(self::$comparisonConfig);
+        self::$storageApi = new StorageApi(self::$comparisonConfig);
+        self::$fileApi = new FileApi(self::$comparisonConfig);
+        self::$folderApi = new FolderApi(self::$comparisonConfig);
 
-        // self::_uploadTestFiles();
+        self::_uploadTestFiles();
     }
 
-    private static function _getConfig()
+    protected static function getConfig()
     {
         $contents = file_get_contents(realpath(__DIR__ . "/../config.json"));
         $config = \GuzzleHttp\json_decode($contents, true);
@@ -104,20 +113,15 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
         }
 
         $folder = self::_getTestDataPath();
-        $dir_iterator = new \RecursiveDirectoryIterator($folder);
-        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
-
-        foreach ($iterator as $file) {
-            if (!$file->isDir()) {
-                $filePath = $file->getPathName();
-
-                $filePathInStorage = str_replace($folder . '\\', "", $filePath);
-                $filePathInStorage = str_replace("\\", "/", $filePathInStorage);
-
-                $response = self::$storageApi->GetIsExist($filePathInStorage);
-                if (!$response->fileExist->isExist) {
-                    self::$storageApi->PutCreate($filePathInStorage, null, null, $filePath);
-                }
+        TestFiles::init();
+        $files = TestFiles::getTestFilesList();
+        foreach ($files as $file) {
+            $path = $file->folder . $file->fileName;
+            $isExistRequest = new \GroupDocs\Comparison\Model\Requests\objectExistsRequest($path);
+            $isExistResponse = self::$storageApi->objectExists($isExistRequest);
+            if (!$isExistResponse->getExists()) {
+                $uploadRequest = new \GroupDocs\Comparison\Model\Requests\uploadFileRequest($path, $folder . DIRECTORY_SEPARATOR . $path);
+                $response = self::$fileApi->uploadFile($uploadRequest);
             }
         }
 
@@ -126,7 +130,7 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
 
     private static function _getTestDataPath()
     {
-        return realpath(__DIR__ . '/../Resources/TestData/');
+        return realpath(__DIR__ . '/../Resources/');
     }
 
     /**
@@ -146,6 +150,6 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
      */
     protected static function getTestFilePath($file)
     {
-        return realpath(self::_getTestDataPath() . DIRECTORY_SEPARATOR .  $file->folder . DIRECTORY_SEPARATOR . $file->fileName);
+        return realpath(self::_getTestDataPath() . DIRECTORY_SEPARATOR . $file->folder . $file->fileName);
     }
 }

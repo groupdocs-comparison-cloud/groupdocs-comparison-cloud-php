@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="Link.php">
- *   Copyright (c) 2003-2018 Aspose Pty Ltd
+ *   Copyright (c) 2003-2019 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,9 +24,6 @@
  *  SOFTWARE.
  * </summary>
  * --------------------------------------------------------------------------------------------------------------------
- */
-/*
- * Link
  */
 
 namespace GroupDocs\Comparison\Model;
