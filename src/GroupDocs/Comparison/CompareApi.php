@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="CompareApi.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -794,9 +794,9 @@ class CompareApi
      */
     protected function putChangesDocumentRequest(Requests\putChangesDocumentRequest $request)
     {
-        // verify the required parameter 'comparisonOptions' is set
-        if ($request->comparisonOptions === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $comparisonOptions when calling putChangesDocument');
+        // verify the required parameter 'updatesOptions' is set
+        if ($request->updatesOptions === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $updatesOptions when calling putChangesDocument');
         }
 
         $resourcePath = '/comparison/updates';
@@ -813,11 +813,11 @@ class CompareApi
 
         // body params
         $_tempBody = null;
-        if (isset($request->comparisonOptions)) {
-            if (is_string($request->comparisonOptions)) {
-                $_tempBody = "\"" . $request->comparisonOptions . "\"";   
+        if (isset($request->updatesOptions)) {
+            if (is_string($request->updatesOptions)) {
+                $_tempBody = "\"" . $request->updatesOptions . "\"";   
             } else {
-                $_tempBody = $request->comparisonOptions;
+                $_tempBody = $request->updatesOptions;
             }
         }
 
@@ -999,7 +999,7 @@ class CompareApi
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="comparisonsRequest.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1033,7 +1033,7 @@ class comparisonsRequest
     /*
      * Initializes a new instance of the comparisonsRequest class.
      *  
-     * @param \GroupDocs\Comparison\Model\Options $comparisonOptions Comparison options
+     * @param \GroupDocs\Comparison\Model\ComparisonOptions $comparisonOptions Comparison options
      */
     public function __construct($comparisonOptions)             
     {
@@ -1048,7 +1048,7 @@ class comparisonsRequest
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="postChangesRequest.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1082,7 +1082,7 @@ class postChangesRequest
     /*
      * Initializes a new instance of the postChangesRequest class.
      *  
-     * @param \GroupDocs\Comparison\Model\Options $comparisonOptions Comparison options
+     * @param \GroupDocs\Comparison\Model\ComparisonOptions $comparisonOptions Comparison options
      */
     public function __construct($comparisonOptions)             
     {
@@ -1097,7 +1097,7 @@ class postChangesRequest
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="putChangesDocumentRequest.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1131,15 +1131,15 @@ class putChangesDocumentRequest
     /*
      * Initializes a new instance of the putChangesDocumentRequest class.
      *  
-     * @param \GroupDocs\Comparison\Model\UpdatesOptions $comparisonOptions Comparison options
+     * @param \GroupDocs\Comparison\Model\UpdatesOptions $updatesOptions Comparison options
      */
-    public function __construct($comparisonOptions)             
+    public function __construct($updatesOptions)             
     {
-        $this->comparisonOptions = $comparisonOptions;
+        $this->updatesOptions = $updatesOptions;
     }
 
     /*
      * Comparison options
      */
-    public $comparisonOptions;
+    public $updatesOptions;
 }

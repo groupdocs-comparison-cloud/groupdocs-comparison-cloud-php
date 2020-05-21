@@ -2,7 +2,7 @@
 /**
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose Pty Ltd">
-*   Copyright (c) 2003-2019 Aspose Pty Ltd
+*   Copyright (c) 2003-2020 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,7 +28,7 @@
 namespace GroupDocs\Comparison\ApiTests;
 
 use GroupDocs\Comparison\Model\Requests;
-use GroupDocs\Comparison\Model\Options;
+use GroupDocs\Comparison\Model\ComparisonOptions;
 use GroupDocs\Comparison\Model\Settings;
 use GroupDocs\Comparison\Model\ItemsStyle;
 use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
@@ -42,89 +42,89 @@ class ComparisonsApiTest extends BaseApiTest
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceCell, TestFiles::$TargetCell);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }    
 
     public function testComparisonsDiagram()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceDiagram, TestFiles::$TargetDiagram);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsEmail()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceEmail, TestFiles::$TargetEmail);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsHtml()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceHtml, TestFiles::$TargetHtml);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsImage()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceImage, TestFiles::$TargetImage);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsNote()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsNoteProtected()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }    
     
     public function testComparisonsPdf()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourcePdf, TestFiles::$TargetPdf);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsPdfProtected()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourcePdfProtected, TestFiles::$TargetPdfProtected);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }
     
     public function testComparisonsText()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceText, TestFiles::$TargetText);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsWord()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceWord, TestFiles::$TargetWord);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
     public function testComparisonsWordProtected()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceWordProtected, TestFiles::$TargetWordProtected);
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getHref(), $options->getOutputPath());
+        $this->assertEquals($response->getRel(), $options->getOutputPath());
     }       
 
     private function GetComparisonOptions($sourceFile, $targetFile)
     {
-        $options = new Options();        
+        $options = new ComparisonOptions();        
         $options->setSourceFile($sourceFile->ToFileInfo());
         $options->setTargetFiles([$targetFile->ToFileInfo()]);
         $options->setOutputPath("/resultFilePath/" . $sourceFile->fileName);
@@ -134,13 +134,12 @@ class ComparisonsApiTest extends BaseApiTest
         $settings->setStyleChangeDetection(true);
         $settings->setUseFramesForDelInsElements(false);
         $settings->setMetaData(null);
-        $settings->setDetailLevel("Low");
+        $settings->setDetailsLevel(Settings::DETAILS_LEVEL_LOW);
         $settings->setDiagramMasterSetting(null);
         $settings->setCalculateComponentCoordinates(false);
-        $settings->setCloneMetadata("Default");
-        $settings->setMarkDeletedInsertedContentDeep(false);
+        $settings->setCloneMetadata(Settings::CLONE_METADATA__DEFAULT);
         $settings->setPassword("1111");
-        $settings->setPasswordSaveOption("User");        
+        $settings->setPasswordSaveOption(Settings::PASSWORD_SAVE_OPTION_USER);        
         $deletedItemsStyle = new ItemsStyle();                
         $deletedItemsStyle->setBeginSeparatorString("");
         $deletedItemsStyle->setEndSeparatorString("");
@@ -167,7 +166,7 @@ class ComparisonsApiTest extends BaseApiTest
         $styleChangedItemsStyle->setBold(false);
         $styleChangedItemsStyle->setItalic(false);
         $styleChangedItemsStyle->setStrikeThrough(false);
-        $settings->setStyleChangedItemsStyle($styleChangedItemsStyle); 
+        $settings->setChangedItemsStyle($styleChangedItemsStyle); 
 
         $options->setSettings($settings);
 

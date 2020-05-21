@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ItemsStyle.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -59,7 +59,8 @@ class ItemsStyle implements ArrayAccess
         'endSeparatorString' => 'string',
         'bold' => 'bool',
         'italic' => 'bool',
-        'strikeThrough' => 'bool'
+        'strikeThrough' => 'bool',
+        'underline' => 'bool'
     ];
 
     /*
@@ -74,7 +75,8 @@ class ItemsStyle implements ArrayAccess
         'endSeparatorString' => null,
         'bold' => null,
         'italic' => null,
-        'strikeThrough' => null
+        'strikeThrough' => null,
+        'underline' => null
     ];
 
     /*
@@ -110,7 +112,8 @@ class ItemsStyle implements ArrayAccess
         'endSeparatorString' => 'EndSeparatorString',
         'bold' => 'Bold',
         'italic' => 'Italic',
-        'strikeThrough' => 'StrikeThrough'
+        'strikeThrough' => 'StrikeThrough',
+        'underline' => 'Underline'
     ];
 
     /*
@@ -125,7 +128,8 @@ class ItemsStyle implements ArrayAccess
         'endSeparatorString' => 'setEndSeparatorString',
         'bold' => 'setBold',
         'italic' => 'setItalic',
-        'strikeThrough' => 'setStrikeThrough'
+        'strikeThrough' => 'setStrikeThrough',
+        'underline' => 'setUnderline'
     ];
 
     /*
@@ -140,7 +144,8 @@ class ItemsStyle implements ArrayAccess
         'endSeparatorString' => 'getEndSeparatorString',
         'bold' => 'getBold',
         'italic' => 'getItalic',
-        'strikeThrough' => 'getStrikeThrough'
+        'strikeThrough' => 'getStrikeThrough',
+        'underline' => 'getUnderline'
     ];
 
     /*
@@ -210,6 +215,7 @@ class ItemsStyle implements ArrayAccess
         $this->container['bold'] = isset($data['bold']) ? $data['bold'] : null;
         $this->container['italic'] = isset($data['italic']) ? $data['italic'] : null;
         $this->container['strikeThrough'] = isset($data['strikeThrough']) ? $data['strikeThrough'] : null;
+        $this->container['underline'] = isset($data['underline']) ? $data['underline'] : null;
     }
 
     /*
@@ -230,6 +236,9 @@ class ItemsStyle implements ArrayAccess
         if ($this->container['strikeThrough'] === null) {
             $invalidProperties[] = "'strikeThrough' can't be null";
         }
+        if ($this->container['underline'] === null) {
+            $invalidProperties[] = "'underline' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -249,6 +258,9 @@ class ItemsStyle implements ArrayAccess
             return false;
         }
         if ($this->container['strikeThrough'] === null) {
+            return false;
+        }
+        if ($this->container['underline'] === null) {
             return false;
         }
         return true;
@@ -412,13 +424,37 @@ class ItemsStyle implements ArrayAccess
     /*
      * Sets strikeThrough
      *
-     * @param bool $strikeThrough Strikethrough style for changed components
+     * @param bool $strikeThrough Strike through style for changed components
      *
      * @return $this
      */
     public function setStrikeThrough($strikeThrough)
     {
         $this->container['strikeThrough'] = $strikeThrough;
+
+        return $this;
+    }
+
+    /*
+     * Gets underline
+     *
+     * @return bool
+     */
+    public function getUnderline()
+    {
+        return $this->container['underline'];
+    }
+
+    /*
+     * Sets underline
+     *
+     * @param bool $underline Underline style for changed components
+     *
+     * @return $this
+     */
+    public function setUnderline($underline)
+    {
+        $this->container['underline'] = $underline;
 
         return $this;
     }

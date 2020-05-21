@@ -2,7 +2,7 @@
 /**
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose Pty Ltd">
-*   Copyright (c) 2003-2019 Aspose Pty Ltd
+*   Copyright (c) 2003-2020 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,7 +28,7 @@
 namespace GroupDocs\Comparison\ApiTests;
 
 use GroupDocs\Comparison\Model\Requests;
-use GroupDocs\Comparison\Model\Options;
+use GroupDocs\Comparison\Model\ComparisonOptions;
 use GroupDocs\Comparison\Model\Settings;
 use GroupDocs\Comparison\Model\ItemsStyle;
 use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
@@ -77,14 +77,14 @@ class ComparisonChangesApiTest extends BaseApiTest
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
         $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
-        $this->assertEquals(count($response), 8);
+        $this->assertEquals(count($response), 12);
     }  
     
     public function testChangesNoteProtected()
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
         $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
-        $this->assertEquals(count($response), 8);
+        $this->assertEquals(count($response), 12);
     }    
     
     public function testChangesPdf()
@@ -124,7 +124,7 @@ class ComparisonChangesApiTest extends BaseApiTest
 
     private function GetComparisonOptions($sourceFile, $targetFile)
     {
-        $options = new Options();        
+        $options = new ComparisonOptions();        
         $options->setSourceFile($sourceFile->ToFileInfo());
         $options->setTargetFiles([$targetFile->ToFileInfo()]);
         $options->setOutputPath("/resultFilePath/" . $sourceFile->fileName);
@@ -134,13 +134,12 @@ class ComparisonChangesApiTest extends BaseApiTest
         $settings->setStyleChangeDetection(true);
         $settings->setUseFramesForDelInsElements(false);
         $settings->setMetaData(null);
-        $settings->setDetailLevel("Low");
+        $settings->setDetailsLevel(Settings::DETAILS_LEVEL_LOW);
         $settings->setDiagramMasterSetting(null);
         $settings->setCalculateComponentCoordinates(false);
-        $settings->setCloneMetadata("Default");
-        $settings->setMarkDeletedInsertedContentDeep(false);
+        $settings->setCloneMetadata(Settings::CLONE_METADATA__DEFAULT);
         $settings->setPassword("1111");
-        $settings->setPasswordSaveOption("User");        
+        $settings->setPasswordSaveOption(Settings::PASSWORD_SAVE_OPTION_USER);        
         $deletedItemsStyle = new ItemsStyle();                
         $deletedItemsStyle->setBeginSeparatorString("");
         $deletedItemsStyle->setEndSeparatorString("");
@@ -167,7 +166,7 @@ class ComparisonChangesApiTest extends BaseApiTest
         $styleChangedItemsStyle->setBold(false);
         $styleChangedItemsStyle->setItalic(false);
         $styleChangedItemsStyle->setStrikeThrough(false);
-        $settings->setStyleChangedItemsStyle($styleChangedItemsStyle); 
+        $settings->setChangedItemsStyle($styleChangedItemsStyle); 
 
         $options->setSettings($settings);
 

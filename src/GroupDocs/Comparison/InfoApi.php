@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="InfoApi.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -85,6 +85,276 @@ class InfoApi
     public function getConfig() 
     {
         return $this->config;
+    }
+
+    /*
+     * Operation getDocumentInfo
+     *
+     * Gets document information
+     *
+     * @param Requests\getDocumentInfoRequest $request is a request object for operation
+     *
+     * @throws \GroupDocs\Comparison\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \GroupDocs\Comparison\Model\InfoResult
+     */
+    public function getDocumentInfo(Requests\getDocumentInfoRequest $request)
+    {
+        list($response) = $this->getDocumentInfoWithHttpInfo($request);
+        return $response;
+    }
+
+    /*
+     * Operation getDocumentInfoWithHttpInfo
+     *
+     * Gets document information
+     *
+     * @param Requests\getDocumentInfoRequest $request is a request object for operation
+     *
+     * @throws \GroupDocs\Comparison\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \GroupDocs\Comparison\Model\InfoResult, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getDocumentInfoWithHttpInfo(Requests\getDocumentInfoRequest $request)
+    {
+        $returnType = '\GroupDocs\Comparison\Model\InfoResult';
+        $request = $this->getDocumentInfoRequest($request);
+
+        try {
+            $options = $this->_createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                $responseBody = $e->getResponse()->getBody();
+                $content = $responseBody->getContents();
+                $error = json_decode($content);
+
+                $errorCode = $e->getCode();
+                $errorMessage = $error->Error != null && $error->Error->Message != null
+                    ? $error->Error->Message
+                    : $e->getMessage();
+                
+                throw new ApiException($errorMessage, $errorCode);
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {          
+                throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()), $statusCode);
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+            
+            if ($this->config->getDebug()) {
+                $this->_writeResponseLog($statusCode, $response->getHeaders(), ObjectSerializer::deserialize($content, $returnType, []));
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\GroupDocs\Comparison\Model\InfoResult', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                break;
+            }
+            throw $e;
+        }
+    }
+
+    /*
+     * Operation getDocumentInfoAsync
+     *
+     * Gets document information
+     *
+     * @param Requests\getDocumentInfoRequest $request is a request object for operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getDocumentInfoAsync(Requests\getDocumentInfoRequest $request) 
+    {
+        return $this->getDocumentInfoAsyncWithHttpInfo($request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /*
+     * Operation getDocumentInfoAsyncWithHttpInfo
+     *
+     * Gets document information
+     *
+     * @param Requests\getDocumentInfoRequest $request is a request object for operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getDocumentInfoAsyncWithHttpInfo(Requests\getDocumentInfoRequest $request) 
+    {
+        $returnType = '\GroupDocs\Comparison\Model\InfoResult';
+        $request = $this->getDocumentInfoRequest($request);
+
+        return $this->client
+            ->sendAsync($request, $this->_createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+                    
+                    if ($this->config->getDebug()) {
+                        $this->_writeResponseLog($response->getStatusCode(), $response->getHeaders(), ObjectSerializer::deserialize($content, $returnType, []));
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {        
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();        
+          
+                    throw new ApiException(
+                        sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()), $statusCode
+                    );
+                }
+            );
+    }
+
+    /*
+     * Create request for operation 'getDocumentInfo'
+     *
+     * @param Requests\getDocumentInfoRequest $request is a request object for operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getDocumentInfoRequest(Requests\getDocumentInfoRequest $request)
+    {
+        // verify the required parameter 'fileInfo' is set
+        if ($request->fileInfo === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fileInfo when calling getDocumentInfo');
+        }
+
+        $resourcePath = '/comparison/info';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = "";
+        $multipart = false;
+    
+
+    
+    
+        $resourcePath = $this->_buildUrl($resourcePath, $queryParams);
+
+        // body params
+        $_tempBody = null;
+        if (isset($request->fileInfo)) {
+            if (is_string($request->fileInfo)) {
+                $_tempBody = "\"" . $request->fileInfo . "\"";   
+            } else {
+                $_tempBody = $request->fileInfo;
+            }
+        }
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'filename' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = $formParams["data"];
+            }
+        }
+    
+        $this->_requestToken();
+
+        if ($this->accessToken !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->accessToken;
+        }
+
+        $defaultHeaders = [];
+        
+        if ($this->config->getClientName()) {
+            $defaultHeaders['x-groupdocs-client'] = $this->config->getClientName();
+        }
+
+        if ($this->config->getClientVersion()) {
+            $defaultHeaders['x-groupdocs-client-version'] = $this->config->getClientVersion();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+    
+        $req = new Request(
+            'POST',
+            $resourcePath,
+            $headers,
+            $httpBody
+        );
+        if ($this->config->getDebug()) {
+            $this->_writeRequestLog('POST', $resourcePath, $headers, $httpBody);
+        }
+        
+        return $req;
     }
 
     /*
@@ -438,4 +708,53 @@ class InfoApi
         }
     }
   
+}
+/*
+ * --------------------------------------------------------------------------------------------------------------------
+ * <copyright company="Aspose Pty Ltd" file="getDocumentInfoRequest.php">
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------------------------------------------
+ */
+
+namespace GroupDocs\Comparison\Model\Requests;
+
+/*
+ * Request model for getDocumentInfo operation.
+ */
+class getDocumentInfoRequest
+{
+    /*
+     * Initializes a new instance of the getDocumentInfoRequest class.
+     *  
+     * @param \GroupDocs\Comparison\Model\FileInfo $fileInfo 
+     */
+    public function __construct($fileInfo)             
+    {
+        $this->fileInfo = $fileInfo;
+    }
+
+    /*
+     * Gets or sets fileInfo
+     */
+    public $fileInfo;
 }

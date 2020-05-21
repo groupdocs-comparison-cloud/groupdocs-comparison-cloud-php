@@ -1,7 +1,7 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="FileInfo.php">
+ * <copyright company="Aspose Pty Ltd" file="ComparisonOptions.php">
  *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -32,20 +32,20 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * FileInfo
+ * ComparisonOptions
  *
- * @description Describes compared document
+ * @description Defines comparison options
  */
-class FileInfo implements ArrayAccess
+class ComparisonOptions implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'Type';
 
     /*
      * The original name of the model.
      *
      * @var string
      */
-    protected static $swaggerModelName = "FileInfo";
+    protected static $swaggerModelName = "ComparisonOptions";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -53,10 +53,11 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'filePath' => 'string',
-        'versionId' => 'string',
-        'storageName' => 'string',
-        'password' => 'string'
+        'sourceFile' => '\GroupDocs\Comparison\Model\FileInfo',
+        'targetFiles' => '\GroupDocs\Comparison\Model\FileInfo[]',
+        'settings' => '\GroupDocs\Comparison\Model\Settings',
+        'changeType' => 'string',
+        'outputPath' => 'string'
     ];
 
     /*
@@ -65,10 +66,11 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'filePath' => null,
-        'versionId' => null,
-        'storageName' => null,
-        'password' => null
+        'sourceFile' => null,
+        'targetFiles' => null,
+        'settings' => null,
+        'changeType' => null,
+        'outputPath' => null
     ];
 
     /*
@@ -98,10 +100,11 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'filePath' => 'FilePath',
-        'versionId' => 'VersionId',
-        'storageName' => 'StorageName',
-        'password' => 'Password'
+        'sourceFile' => 'SourceFile',
+        'targetFiles' => 'TargetFiles',
+        'settings' => 'Settings',
+        'changeType' => 'ChangeType',
+        'outputPath' => 'OutputPath'
     ];
 
     /*
@@ -110,10 +113,11 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'filePath' => 'setFilePath',
-        'versionId' => 'setVersionId',
-        'storageName' => 'setStorageName',
-        'password' => 'setPassword'
+        'sourceFile' => 'setSourceFile',
+        'targetFiles' => 'setTargetFiles',
+        'settings' => 'setSettings',
+        'changeType' => 'setChangeType',
+        'outputPath' => 'setOutputPath'
     ];
 
     /*
@@ -122,10 +126,11 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'filePath' => 'getFilePath',
-        'versionId' => 'getVersionId',
-        'storageName' => 'getStorageName',
-        'password' => 'getPassword'
+        'sourceFile' => 'getSourceFile',
+        'targetFiles' => 'getTargetFiles',
+        'settings' => 'getSettings',
+        'changeType' => 'getChangeType',
+        'outputPath' => 'getOutputPath'
     ];
 
     /*
@@ -169,8 +174,41 @@ class FileInfo implements ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const CHANGE_TYPE_NONE = 'None';
+    const CHANGE_TYPE_MODIFIED = 'Modified';
+    const CHANGE_TYPE_INSERTED = 'Inserted';
+    const CHANGE_TYPE_DELETED = 'Deleted';
+    const CHANGE_TYPE_ADDED = 'Added';
+    const CHANGE_TYPE_NOT_MODIFIED = 'NotModified';
+    const CHANGE_TYPE_STYLE_CHANGED = 'StyleChanged';
+    const CHANGE_TYPE_RESIZED = 'Resized';
+    const CHANGE_TYPE_MOVED = 'Moved';
+    const CHANGE_TYPE_MOVED_AND_RESIZED = 'MovedAndResized';
+    const CHANGE_TYPE_SHIFTED_AND_RESIZED = 'ShiftedAndResized';
     
 
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getChangeTypeAllowableValues()
+    {
+        return [
+            self::CHANGE_TYPE_NONE,
+            self::CHANGE_TYPE_MODIFIED,
+            self::CHANGE_TYPE_INSERTED,
+            self::CHANGE_TYPE_DELETED,
+            self::CHANGE_TYPE_ADDED,
+            self::CHANGE_TYPE_NOT_MODIFIED,
+            self::CHANGE_TYPE_STYLE_CHANGED,
+            self::CHANGE_TYPE_RESIZED,
+            self::CHANGE_TYPE_MOVED,
+            self::CHANGE_TYPE_MOVED_AND_RESIZED,
+            self::CHANGE_TYPE_SHIFTED_AND_RESIZED,
+        ];
+    }
     
 
     /*
@@ -188,10 +226,15 @@ class FileInfo implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['filePath'] = isset($data['filePath']) ? $data['filePath'] : null;
-        $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
-        $this->container['storageName'] = isset($data['storageName']) ? $data['storageName'] : null;
-        $this->container['password'] = isset($data['password']) ? $data['password'] : null;
+        $this->container['sourceFile'] = isset($data['sourceFile']) ? $data['sourceFile'] : null;
+        $this->container['targetFiles'] = isset($data['targetFiles']) ? $data['targetFiles'] : null;
+        $this->container['settings'] = isset($data['settings']) ? $data['settings'] : null;
+        $this->container['changeType'] = isset($data['changeType']) ? $data['changeType'] : null;
+        $this->container['outputPath'] = isset($data['outputPath']) ? $data['outputPath'] : null;
+
+        // Initialize discriminator property with the model name.
+        $discriminator = array_search('Type', self::$attributeMap);
+        $this->container[$discriminator] = static::$swaggerModelName;
     }
 
     /*
@@ -202,6 +245,17 @@ class FileInfo implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['changeType'] === null) {
+            $invalidProperties[] = "'changeType' can't be null";
+        }
+        $allowedValues = $this->getChangeTypeAllowableValues();
+        if (!in_array($this->container['changeType'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'changeType', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -215,102 +269,138 @@ class FileInfo implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['changeType'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getChangeTypeAllowableValues();
+        if (!in_array($this->container['changeType'], $allowedValues)) {
+            return false;
+        }
         return true;
     }
 
 
     /*
-     * Gets filePath
+     * Gets sourceFile
      *
-     * @return string
+     * @return \GroupDocs\Comparison\Model\FileInfo
      */
-    public function getFilePath()
+    public function getSourceFile()
     {
-        return $this->container['filePath'];
+        return $this->container['sourceFile'];
     }
 
     /*
-     * Sets filePath
+     * Sets sourceFile
      *
-     * @param string $filePath Path to the compared document
+     * @param \GroupDocs\Comparison\Model\FileInfo $sourceFile Information about source file
      *
      * @return $this
      */
-    public function setFilePath($filePath)
+    public function setSourceFile($sourceFile)
     {
-        $this->container['filePath'] = $filePath;
+        $this->container['sourceFile'] = $sourceFile;
 
         return $this;
     }
 
     /*
-     * Gets versionId
+     * Gets targetFiles
      *
-     * @return string
+     * @return \GroupDocs\Comparison\Model\FileInfo[]
      */
-    public function getVersionId()
+    public function getTargetFiles()
     {
-        return $this->container['versionId'];
+        return $this->container['targetFiles'];
     }
 
     /*
-     * Sets versionId
+     * Sets targetFiles
      *
-     * @param string $versionId Document version
+     * @param \GroupDocs\Comparison\Model\FileInfo[] $targetFiles Information about target file(s)
      *
      * @return $this
      */
-    public function setVersionId($versionId)
+    public function setTargetFiles($targetFiles)
     {
-        $this->container['versionId'] = $versionId;
+        $this->container['targetFiles'] = $targetFiles;
 
         return $this;
     }
 
     /*
-     * Gets storageName
+     * Gets settings
      *
-     * @return string
+     * @return \GroupDocs\Comparison\Model\Settings
      */
-    public function getStorageName()
+    public function getSettings()
     {
-        return $this->container['storageName'];
+        return $this->container['settings'];
     }
 
     /*
-     * Sets storageName
+     * Sets settings
      *
-     * @param string $storageName Storage name
+     * @param \GroupDocs\Comparison\Model\Settings $settings Comparison settings
      *
      * @return $this
      */
-    public function setStorageName($storageName)
+    public function setSettings($settings)
     {
-        $this->container['storageName'] = $storageName;
+        $this->container['settings'] = $settings;
 
         return $this;
     }
 
     /*
-     * Gets password
+     * Gets changeType
      *
      * @return string
      */
-    public function getPassword()
+    public function getChangeType()
     {
-        return $this->container['password'];
+        return $this->container['changeType'];
     }
 
     /*
-     * Sets password
+     * Sets changeType
      *
-     * @param string $password Password for encrypted document
+     * @param string $changeType Changes type. Used only for Changes resource(/comparison/changes)
      *
      * @return $this
      */
-    public function setPassword($password)
+    public function setChangeType($changeType)
     {
-        $this->container['password'] = $password;
+        $allowedValues = $this->getChangeTypeAllowableValues();
+        if ((!is_numeric($changeType) && !in_array($changeType, $allowedValues)) || (is_numeric($changeType) && !in_array($allowedValues[$changeType], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'changeType', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
+        $this->container['changeType'] = $changeType;
+
+        return $this;
+    }
+
+    /*
+     * Gets outputPath
+     *
+     * @return string
+     */
+    public function getOutputPath()
+    {
+        return $this->container['outputPath'];
+    }
+
+    /*
+     * Sets outputPath
+     *
+     * @param string $outputPath Path to the resultant document (if not specified the document will not be saved)
+     *
+     * @return $this
+     */
+    public function setOutputPath($outputPath)
+    {
+        $this->container['outputPath'] = $outputPath;
 
         return $this;
     }

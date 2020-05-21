@@ -1,7 +1,7 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="FileInfo.php">
+ * <copyright company="Aspose Pty Ltd" file="Size.php">
  *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -32,11 +32,11 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * FileInfo
+ * Size
  *
- * @description Describes compared document
+ * @description Item size
  */
-class FileInfo implements ArrayAccess
+class Size implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -45,7 +45,7 @@ class FileInfo implements ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = "FileInfo";
+    protected static $swaggerModelName = "Size";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -53,10 +53,8 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'filePath' => 'string',
-        'versionId' => 'string',
-        'storageName' => 'string',
-        'password' => 'string'
+        'width' => 'int',
+        'height' => 'int'
     ];
 
     /*
@@ -65,10 +63,8 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'filePath' => null,
-        'versionId' => null,
-        'storageName' => null,
-        'password' => null
+        'width' => 'int32',
+        'height' => 'int32'
     ];
 
     /*
@@ -98,10 +94,8 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'filePath' => 'FilePath',
-        'versionId' => 'VersionId',
-        'storageName' => 'StorageName',
-        'password' => 'Password'
+        'width' => 'Width',
+        'height' => 'Height'
     ];
 
     /*
@@ -110,10 +104,8 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'filePath' => 'setFilePath',
-        'versionId' => 'setVersionId',
-        'storageName' => 'setStorageName',
-        'password' => 'setPassword'
+        'width' => 'setWidth',
+        'height' => 'setHeight'
     ];
 
     /*
@@ -122,10 +114,8 @@ class FileInfo implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'filePath' => 'getFilePath',
-        'versionId' => 'getVersionId',
-        'storageName' => 'getStorageName',
-        'password' => 'getPassword'
+        'width' => 'getWidth',
+        'height' => 'getHeight'
     ];
 
     /*
@@ -188,10 +178,8 @@ class FileInfo implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['filePath'] = isset($data['filePath']) ? $data['filePath'] : null;
-        $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
-        $this->container['storageName'] = isset($data['storageName']) ? $data['storageName'] : null;
-        $this->container['password'] = isset($data['password']) ? $data['password'] : null;
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
     }
 
     /*
@@ -203,6 +191,12 @@ class FileInfo implements ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['width'] === null) {
+            $invalidProperties[] = "'width' can't be null";
+        }
+        if ($this->container['height'] === null) {
+            $invalidProperties[] = "'height' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -215,102 +209,60 @@ class FileInfo implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['width'] === null) {
+            return false;
+        }
+        if ($this->container['height'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /*
-     * Gets filePath
+     * Gets width
      *
-     * @return string
+     * @return int
      */
-    public function getFilePath()
+    public function getWidth()
     {
-        return $this->container['filePath'];
+        return $this->container['width'];
     }
 
     /*
-     * Sets filePath
+     * Sets width
      *
-     * @param string $filePath Path to the compared document
+     * @param int $width Width of item
      *
      * @return $this
      */
-    public function setFilePath($filePath)
+    public function setWidth($width)
     {
-        $this->container['filePath'] = $filePath;
+        $this->container['width'] = $width;
 
         return $this;
     }
 
     /*
-     * Gets versionId
+     * Gets height
      *
-     * @return string
+     * @return int
      */
-    public function getVersionId()
+    public function getHeight()
     {
-        return $this->container['versionId'];
+        return $this->container['height'];
     }
 
     /*
-     * Sets versionId
+     * Sets height
      *
-     * @param string $versionId Document version
+     * @param int $height Height of item
      *
      * @return $this
      */
-    public function setVersionId($versionId)
+    public function setHeight($height)
     {
-        $this->container['versionId'] = $versionId;
-
-        return $this;
-    }
-
-    /*
-     * Gets storageName
-     *
-     * @return string
-     */
-    public function getStorageName()
-    {
-        return $this->container['storageName'];
-    }
-
-    /*
-     * Sets storageName
-     *
-     * @param string $storageName Storage name
-     *
-     * @return $this
-     */
-    public function setStorageName($storageName)
-    {
-        $this->container['storageName'] = $storageName;
-
-        return $this;
-    }
-
-    /*
-     * Gets password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->container['password'];
-    }
-
-    /*
-     * Sets password
-     *
-     * @param string $password Password for encrypted document
-     *
-     * @return $this
-     */
-    public function setPassword($password)
-    {
-        $this->container['password'] = $password;
+        $this->container['height'] = $height;
 
         return $this;
     }

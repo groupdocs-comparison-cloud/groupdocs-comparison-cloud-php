@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="DiagramMasterSetting.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,9 +54,7 @@ class DiagramMasterSetting implements ArrayAccess
      */
     protected static $swaggerTypes = [
         'masterPath' => 'string',
-        'useSourceMaster' => 'bool',
-        'width' => 'int',
-        'height' => 'int'
+        'useSourceMaster' => 'bool'
     ];
 
     /*
@@ -66,9 +64,7 @@ class DiagramMasterSetting implements ArrayAccess
      */
     protected static $swaggerFormats = [
         'masterPath' => null,
-        'useSourceMaster' => null,
-        'width' => 'int32',
-        'height' => 'int32'
+        'useSourceMaster' => null
     ];
 
     /*
@@ -99,9 +95,7 @@ class DiagramMasterSetting implements ArrayAccess
      */
     protected static $attributeMap = [
         'masterPath' => 'MasterPath',
-        'useSourceMaster' => 'UseSourceMaster',
-        'width' => 'Width',
-        'height' => 'Height'
+        'useSourceMaster' => 'UseSourceMaster'
     ];
 
     /*
@@ -111,9 +105,7 @@ class DiagramMasterSetting implements ArrayAccess
      */
     protected static $setters = [
         'masterPath' => 'setMasterPath',
-        'useSourceMaster' => 'setUseSourceMaster',
-        'width' => 'setWidth',
-        'height' => 'setHeight'
+        'useSourceMaster' => 'setUseSourceMaster'
     ];
 
     /*
@@ -123,9 +115,7 @@ class DiagramMasterSetting implements ArrayAccess
      */
     protected static $getters = [
         'masterPath' => 'getMasterPath',
-        'useSourceMaster' => 'getUseSourceMaster',
-        'width' => 'getWidth',
-        'height' => 'getHeight'
+        'useSourceMaster' => 'getUseSourceMaster'
     ];
 
     /*
@@ -190,8 +180,6 @@ class DiagramMasterSetting implements ArrayAccess
     {
         $this->container['masterPath'] = isset($data['masterPath']) ? $data['masterPath'] : null;
         $this->container['useSourceMaster'] = isset($data['useSourceMaster']) ? $data['useSourceMaster'] : null;
-        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
-        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
     }
 
     /*
@@ -206,12 +194,6 @@ class DiagramMasterSetting implements ArrayAccess
         if ($this->container['useSourceMaster'] === null) {
             $invalidProperties[] = "'useSourceMaster' can't be null";
         }
-        if ($this->container['width'] === null) {
-            $invalidProperties[] = "'width' can't be null";
-        }
-        if ($this->container['height'] === null) {
-            $invalidProperties[] = "'height' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -225,12 +207,6 @@ class DiagramMasterSetting implements ArrayAccess
     {
 
         if ($this->container['useSourceMaster'] === null) {
-            return false;
-        }
-        if ($this->container['width'] === null) {
-            return false;
-        }
-        if ($this->container['height'] === null) {
             return false;
         }
         return true;
@@ -281,54 +257,6 @@ class DiagramMasterSetting implements ArrayAccess
     public function setUseSourceMaster($useSourceMaster)
     {
         $this->container['useSourceMaster'] = $useSourceMaster;
-
-        return $this;
-    }
-
-    /*
-     * Gets width
-     *
-     * @return int
-     */
-    public function getWidth()
-    {
-        return $this->container['width'];
-    }
-
-    /*
-     * Sets width
-     *
-     * @param int $width Width of original document
-     *
-     * @return $this
-     */
-    public function setWidth($width)
-    {
-        $this->container['width'] = $width;
-
-        return $this;
-    }
-
-    /*
-     * Gets height
-     *
-     * @return int
-     */
-    public function getHeight()
-    {
-        return $this->container['height'];
-    }
-
-    /*
-     * Sets height
-     *
-     * @param int $height Height of original document
-     *
-     * @return $this
-     */
-    public function setHeight($height)
-    {
-        $this->container['height'] = $height;
 
         return $this;
     }

@@ -1,8 +1,8 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="OriginalSize.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ * <copyright company="Aspose Pty Ltd" file="PageInfo.php">
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,11 +32,11 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * OriginalSize
+ * PageInfo
  *
- * @description OriginalSize Object fields
+ * @description Represents information about page
  */
-class OriginalSize implements ArrayAccess
+class PageInfo implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -45,7 +45,7 @@ class OriginalSize implements ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = "OriginalSize";
+    protected static $swaggerModelName = "PageInfo";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -54,7 +54,8 @@ class OriginalSize implements ArrayAccess
      */
     protected static $swaggerTypes = [
         'width' => 'int',
-        'height' => 'int'
+        'height' => 'int',
+        'pageNumber' => 'int'
     ];
 
     /*
@@ -64,7 +65,8 @@ class OriginalSize implements ArrayAccess
      */
     protected static $swaggerFormats = [
         'width' => 'int32',
-        'height' => 'int32'
+        'height' => 'int32',
+        'pageNumber' => 'int32'
     ];
 
     /*
@@ -95,7 +97,8 @@ class OriginalSize implements ArrayAccess
      */
     protected static $attributeMap = [
         'width' => 'Width',
-        'height' => 'Height'
+        'height' => 'Height',
+        'pageNumber' => 'PageNumber'
     ];
 
     /*
@@ -105,7 +108,8 @@ class OriginalSize implements ArrayAccess
      */
     protected static $setters = [
         'width' => 'setWidth',
-        'height' => 'setHeight'
+        'height' => 'setHeight',
+        'pageNumber' => 'setPageNumber'
     ];
 
     /*
@@ -115,7 +119,8 @@ class OriginalSize implements ArrayAccess
      */
     protected static $getters = [
         'width' => 'getWidth',
-        'height' => 'getHeight'
+        'height' => 'getHeight',
+        'pageNumber' => 'getPageNumber'
     ];
 
     /*
@@ -180,6 +185,7 @@ class OriginalSize implements ArrayAccess
     {
         $this->container['width'] = isset($data['width']) ? $data['width'] : null;
         $this->container['height'] = isset($data['height']) ? $data['height'] : null;
+        $this->container['pageNumber'] = isset($data['pageNumber']) ? $data['pageNumber'] : null;
     }
 
     /*
@@ -196,6 +202,9 @@ class OriginalSize implements ArrayAccess
         }
         if ($this->container['height'] === null) {
             $invalidProperties[] = "'height' can't be null";
+        }
+        if ($this->container['pageNumber'] === null) {
+            $invalidProperties[] = "'pageNumber' can't be null";
         }
         return $invalidProperties;
     }
@@ -215,6 +224,9 @@ class OriginalSize implements ArrayAccess
         if ($this->container['height'] === null) {
             return false;
         }
+        if ($this->container['pageNumber'] === null) {
+            return false;
+        }
         return true;
     }
 
@@ -232,7 +244,7 @@ class OriginalSize implements ArrayAccess
     /*
      * Sets width
      *
-     * @param int $width Width of original document
+     * @param int $width Page width
      *
      * @return $this
      */
@@ -256,13 +268,37 @@ class OriginalSize implements ArrayAccess
     /*
      * Sets height
      *
-     * @param int $height Height of original document
+     * @param int $height Page height
      *
      * @return $this
      */
     public function setHeight($height)
     {
         $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /*
+     * Gets pageNumber
+     *
+     * @return int
+     */
+    public function getPageNumber()
+    {
+        return $this->container['pageNumber'];
+    }
+
+    /*
+     * Sets pageNumber
+     *
+     * @param int $pageNumber Page number
+     *
+     * @return $this
+     */
+    public function setPageNumber($pageNumber)
+    {
+        $this->container['pageNumber'] = $pageNumber;
 
         return $this;
     }

@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="UpdatesOptions.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,7 +34,7 @@ use \GroupDocs\Comparison\ObjectSerializer;
  *
  * @description Comparison option class for updates endpoint
  */
-class UpdatesOptions extends Options 
+class UpdatesOptions extends ComparisonOptions 
 {
     const DISCRIMINATOR = null;
 
@@ -211,7 +211,7 @@ class UpdatesOptions extends Options
     /*
      * Sets changes
      *
-     * @param \GroupDocs\Comparison\Model\ChangeInfo[] $changes Changes to apply or reject. Used only for Changes resourse (/comparison/updates)
+     * @param \GroupDocs\Comparison\Model\ChangeInfo[] $changes Changes to apply or reject. Used only for updates resource (/comparison/updates)
      *
      * @return $this
      */

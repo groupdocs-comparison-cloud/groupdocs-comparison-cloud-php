@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="Settings.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,21 +55,26 @@ class Settings implements ArrayAccess
     protected static $swaggerTypes = [
         'generateSummaryPage' => 'bool',
         'showDeletedContent' => 'bool',
+        'showInsertedContent' => 'bool',
         'styleChangeDetection' => 'bool',
         'insertedItemsStyle' => '\GroupDocs\Comparison\Model\ItemsStyle',
         'deletedItemsStyle' => '\GroupDocs\Comparison\Model\ItemsStyle',
-        'styleChangedItemsStyle' => '\GroupDocs\Comparison\Model\ItemsStyle',
+        'changedItemsStyle' => '\GroupDocs\Comparison\Model\ItemsStyle',
         'wordsSeparatorChars' => 'string[]',
-        'detailLevel' => 'string',
+        'detailsLevel' => 'string',
         'useFramesForDelInsElements' => 'bool',
         'calculateComponentCoordinates' => 'bool',
-        'markDeletedInsertedContentDeep' => 'bool',
+        'markChangedContent' => 'bool',
+        'markNestedContent' => 'bool',
         'cloneMetadata' => 'string',
         'metaData' => '\GroupDocs\Comparison\Model\Metadata',
         'passwordSaveOption' => 'string',
         'password' => 'string',
         'diagramMasterSetting' => '\GroupDocs\Comparison\Model\DiagramMasterSetting',
-        'originalSize' => '\GroupDocs\Comparison\Model\OriginalSize'
+        'originalSize' => '\GroupDocs\Comparison\Model\Size',
+        'headerFootersComparison' => 'bool',
+        'paperSize' => 'string',
+        'sensitivityOfComparison' => 'int'
     ];
 
     /*
@@ -80,21 +85,26 @@ class Settings implements ArrayAccess
     protected static $swaggerFormats = [
         'generateSummaryPage' => null,
         'showDeletedContent' => null,
+        'showInsertedContent' => null,
         'styleChangeDetection' => null,
         'insertedItemsStyle' => null,
         'deletedItemsStyle' => null,
-        'styleChangedItemsStyle' => null,
+        'changedItemsStyle' => null,
         'wordsSeparatorChars' => null,
-        'detailLevel' => null,
+        'detailsLevel' => null,
         'useFramesForDelInsElements' => null,
         'calculateComponentCoordinates' => null,
-        'markDeletedInsertedContentDeep' => null,
+        'markChangedContent' => null,
+        'markNestedContent' => null,
         'cloneMetadata' => null,
         'metaData' => null,
         'passwordSaveOption' => null,
         'password' => null,
         'diagramMasterSetting' => null,
-        'originalSize' => null
+        'originalSize' => null,
+        'headerFootersComparison' => null,
+        'paperSize' => null,
+        'sensitivityOfComparison' => 'int32'
     ];
 
     /*
@@ -126,21 +136,26 @@ class Settings implements ArrayAccess
     protected static $attributeMap = [
         'generateSummaryPage' => 'GenerateSummaryPage',
         'showDeletedContent' => 'ShowDeletedContent',
+        'showInsertedContent' => 'ShowInsertedContent',
         'styleChangeDetection' => 'StyleChangeDetection',
         'insertedItemsStyle' => 'InsertedItemsStyle',
         'deletedItemsStyle' => 'DeletedItemsStyle',
-        'styleChangedItemsStyle' => 'StyleChangedItemsStyle',
+        'changedItemsStyle' => 'ChangedItemsStyle',
         'wordsSeparatorChars' => 'WordsSeparatorChars',
-        'detailLevel' => 'DetailLevel',
+        'detailsLevel' => 'DetailsLevel',
         'useFramesForDelInsElements' => 'UseFramesForDelInsElements',
         'calculateComponentCoordinates' => 'CalculateComponentCoordinates',
-        'markDeletedInsertedContentDeep' => 'MarkDeletedInsertedContentDeep',
+        'markChangedContent' => 'MarkChangedContent',
+        'markNestedContent' => 'MarkNestedContent',
         'cloneMetadata' => 'CloneMetadata',
         'metaData' => 'MetaData',
         'passwordSaveOption' => 'PasswordSaveOption',
         'password' => 'Password',
         'diagramMasterSetting' => 'DiagramMasterSetting',
-        'originalSize' => 'OriginalSize'
+        'originalSize' => 'OriginalSize',
+        'headerFootersComparison' => 'HeaderFootersComparison',
+        'paperSize' => 'PaperSize',
+        'sensitivityOfComparison' => 'SensitivityOfComparison'
     ];
 
     /*
@@ -151,21 +166,26 @@ class Settings implements ArrayAccess
     protected static $setters = [
         'generateSummaryPage' => 'setGenerateSummaryPage',
         'showDeletedContent' => 'setShowDeletedContent',
+        'showInsertedContent' => 'setShowInsertedContent',
         'styleChangeDetection' => 'setStyleChangeDetection',
         'insertedItemsStyle' => 'setInsertedItemsStyle',
         'deletedItemsStyle' => 'setDeletedItemsStyle',
-        'styleChangedItemsStyle' => 'setStyleChangedItemsStyle',
+        'changedItemsStyle' => 'setChangedItemsStyle',
         'wordsSeparatorChars' => 'setWordsSeparatorChars',
-        'detailLevel' => 'setDetailLevel',
+        'detailsLevel' => 'setDetailsLevel',
         'useFramesForDelInsElements' => 'setUseFramesForDelInsElements',
         'calculateComponentCoordinates' => 'setCalculateComponentCoordinates',
-        'markDeletedInsertedContentDeep' => 'setMarkDeletedInsertedContentDeep',
+        'markChangedContent' => 'setMarkChangedContent',
+        'markNestedContent' => 'setMarkNestedContent',
         'cloneMetadata' => 'setCloneMetadata',
         'metaData' => 'setMetaData',
         'passwordSaveOption' => 'setPasswordSaveOption',
         'password' => 'setPassword',
         'diagramMasterSetting' => 'setDiagramMasterSetting',
-        'originalSize' => 'setOriginalSize'
+        'originalSize' => 'setOriginalSize',
+        'headerFootersComparison' => 'setHeaderFootersComparison',
+        'paperSize' => 'setPaperSize',
+        'sensitivityOfComparison' => 'setSensitivityOfComparison'
     ];
 
     /*
@@ -176,21 +196,26 @@ class Settings implements ArrayAccess
     protected static $getters = [
         'generateSummaryPage' => 'getGenerateSummaryPage',
         'showDeletedContent' => 'getShowDeletedContent',
+        'showInsertedContent' => 'getShowInsertedContent',
         'styleChangeDetection' => 'getStyleChangeDetection',
         'insertedItemsStyle' => 'getInsertedItemsStyle',
         'deletedItemsStyle' => 'getDeletedItemsStyle',
-        'styleChangedItemsStyle' => 'getStyleChangedItemsStyle',
+        'changedItemsStyle' => 'getChangedItemsStyle',
         'wordsSeparatorChars' => 'getWordsSeparatorChars',
-        'detailLevel' => 'getDetailLevel',
+        'detailsLevel' => 'getDetailsLevel',
         'useFramesForDelInsElements' => 'getUseFramesForDelInsElements',
         'calculateComponentCoordinates' => 'getCalculateComponentCoordinates',
-        'markDeletedInsertedContentDeep' => 'getMarkDeletedInsertedContentDeep',
+        'markChangedContent' => 'getMarkChangedContent',
+        'markNestedContent' => 'getMarkNestedContent',
         'cloneMetadata' => 'getCloneMetadata',
         'metaData' => 'getMetaData',
         'passwordSaveOption' => 'getPasswordSaveOption',
         'password' => 'getPassword',
         'diagramMasterSetting' => 'getDiagramMasterSetting',
-        'originalSize' => 'getOriginalSize'
+        'originalSize' => 'getOriginalSize',
+        'headerFootersComparison' => 'getHeaderFootersComparison',
+        'paperSize' => 'getPaperSize',
+        'sensitivityOfComparison' => 'getSensitivityOfComparison'
     ];
 
     /*
@@ -234,8 +259,94 @@ class Settings implements ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const DETAILS_LEVEL_LOW = 'Low';
+    const DETAILS_LEVEL_MIDDLE = 'Middle';
+    const DETAILS_LEVEL_HIGH = 'High';
+    const CLONE_METADATA__DEFAULT = 'Default';
+    const CLONE_METADATA_SOURCE = 'Source';
+    const CLONE_METADATA_TARGET = 'Target';
+    const CLONE_METADATA_FILE_AUTHOR = 'FileAuthor';
+    const PASSWORD_SAVE_OPTION_NONE = 'None';
+    const PASSWORD_SAVE_OPTION_SOURCE = 'Source';
+    const PASSWORD_SAVE_OPTION_TARGET = 'Target';
+    const PASSWORD_SAVE_OPTION_USER = 'User';
+    const PAPER_SIZE__DEFAULT = 'Default';
+    const PAPER_SIZE_A0 = 'A0';
+    const PAPER_SIZE_A1 = 'A1';
+    const PAPER_SIZE_A2 = 'A2';
+    const PAPER_SIZE_A3 = 'A3';
+    const PAPER_SIZE_A4 = 'A4';
+    const PAPER_SIZE_A5 = 'A5';
+    const PAPER_SIZE_A6 = 'A6';
+    const PAPER_SIZE_A7 = 'A7';
+    const PAPER_SIZE_A8 = 'A8';
     
 
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDetailsLevelAllowableValues()
+    {
+        return [
+            self::DETAILS_LEVEL_LOW,
+            self::DETAILS_LEVEL_MIDDLE,
+            self::DETAILS_LEVEL_HIGH,
+        ];
+    }
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCloneMetadataAllowableValues()
+    {
+        return [
+            self::CLONE_METADATA__DEFAULT,
+            self::CLONE_METADATA_SOURCE,
+            self::CLONE_METADATA_TARGET,
+            self::CLONE_METADATA_FILE_AUTHOR,
+        ];
+    }
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPasswordSaveOptionAllowableValues()
+    {
+        return [
+            self::PASSWORD_SAVE_OPTION_NONE,
+            self::PASSWORD_SAVE_OPTION_SOURCE,
+            self::PASSWORD_SAVE_OPTION_TARGET,
+            self::PASSWORD_SAVE_OPTION_USER,
+        ];
+    }
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPaperSizeAllowableValues()
+    {
+        return [
+            self::PAPER_SIZE__DEFAULT,
+            self::PAPER_SIZE_A0,
+            self::PAPER_SIZE_A1,
+            self::PAPER_SIZE_A2,
+            self::PAPER_SIZE_A3,
+            self::PAPER_SIZE_A4,
+            self::PAPER_SIZE_A5,
+            self::PAPER_SIZE_A6,
+            self::PAPER_SIZE_A7,
+            self::PAPER_SIZE_A8,
+        ];
+    }
     
 
     /*
@@ -255,21 +366,26 @@ class Settings implements ArrayAccess
     {
         $this->container['generateSummaryPage'] = isset($data['generateSummaryPage']) ? $data['generateSummaryPage'] : null;
         $this->container['showDeletedContent'] = isset($data['showDeletedContent']) ? $data['showDeletedContent'] : null;
+        $this->container['showInsertedContent'] = isset($data['showInsertedContent']) ? $data['showInsertedContent'] : null;
         $this->container['styleChangeDetection'] = isset($data['styleChangeDetection']) ? $data['styleChangeDetection'] : null;
         $this->container['insertedItemsStyle'] = isset($data['insertedItemsStyle']) ? $data['insertedItemsStyle'] : null;
         $this->container['deletedItemsStyle'] = isset($data['deletedItemsStyle']) ? $data['deletedItemsStyle'] : null;
-        $this->container['styleChangedItemsStyle'] = isset($data['styleChangedItemsStyle']) ? $data['styleChangedItemsStyle'] : null;
+        $this->container['changedItemsStyle'] = isset($data['changedItemsStyle']) ? $data['changedItemsStyle'] : null;
         $this->container['wordsSeparatorChars'] = isset($data['wordsSeparatorChars']) ? $data['wordsSeparatorChars'] : null;
-        $this->container['detailLevel'] = isset($data['detailLevel']) ? $data['detailLevel'] : null;
+        $this->container['detailsLevel'] = isset($data['detailsLevel']) ? $data['detailsLevel'] : null;
         $this->container['useFramesForDelInsElements'] = isset($data['useFramesForDelInsElements']) ? $data['useFramesForDelInsElements'] : null;
         $this->container['calculateComponentCoordinates'] = isset($data['calculateComponentCoordinates']) ? $data['calculateComponentCoordinates'] : null;
-        $this->container['markDeletedInsertedContentDeep'] = isset($data['markDeletedInsertedContentDeep']) ? $data['markDeletedInsertedContentDeep'] : null;
+        $this->container['markChangedContent'] = isset($data['markChangedContent']) ? $data['markChangedContent'] : null;
+        $this->container['markNestedContent'] = isset($data['markNestedContent']) ? $data['markNestedContent'] : null;
         $this->container['cloneMetadata'] = isset($data['cloneMetadata']) ? $data['cloneMetadata'] : null;
         $this->container['metaData'] = isset($data['metaData']) ? $data['metaData'] : null;
         $this->container['passwordSaveOption'] = isset($data['passwordSaveOption']) ? $data['passwordSaveOption'] : null;
         $this->container['password'] = isset($data['password']) ? $data['password'] : null;
         $this->container['diagramMasterSetting'] = isset($data['diagramMasterSetting']) ? $data['diagramMasterSetting'] : null;
         $this->container['originalSize'] = isset($data['originalSize']) ? $data['originalSize'] : null;
+        $this->container['headerFootersComparison'] = isset($data['headerFootersComparison']) ? $data['headerFootersComparison'] : null;
+        $this->container['paperSize'] = isset($data['paperSize']) ? $data['paperSize'] : null;
+        $this->container['sensitivityOfComparison'] = isset($data['sensitivityOfComparison']) ? $data['sensitivityOfComparison'] : null;
     }
 
     /*
@@ -287,17 +403,73 @@ class Settings implements ArrayAccess
         if ($this->container['showDeletedContent'] === null) {
             $invalidProperties[] = "'showDeletedContent' can't be null";
         }
+        if ($this->container['showInsertedContent'] === null) {
+            $invalidProperties[] = "'showInsertedContent' can't be null";
+        }
         if ($this->container['styleChangeDetection'] === null) {
             $invalidProperties[] = "'styleChangeDetection' can't be null";
         }
+        if ($this->container['detailsLevel'] === null) {
+            $invalidProperties[] = "'detailsLevel' can't be null";
+        }
+        $allowedValues = $this->getDetailsLevelAllowableValues();
+        if (!in_array($this->container['detailsLevel'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'detailsLevel', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['useFramesForDelInsElements'] === null) {
             $invalidProperties[] = "'useFramesForDelInsElements' can't be null";
         }
         if ($this->container['calculateComponentCoordinates'] === null) {
             $invalidProperties[] = "'calculateComponentCoordinates' can't be null";
         }
-        if ($this->container['markDeletedInsertedContentDeep'] === null) {
-            $invalidProperties[] = "'markDeletedInsertedContentDeep' can't be null";
+        if ($this->container['markChangedContent'] === null) {
+            $invalidProperties[] = "'markChangedContent' can't be null";
+        }
+        if ($this->container['markNestedContent'] === null) {
+            $invalidProperties[] = "'markNestedContent' can't be null";
+        }
+        if ($this->container['cloneMetadata'] === null) {
+            $invalidProperties[] = "'cloneMetadata' can't be null";
+        }
+        $allowedValues = $this->getCloneMetadataAllowableValues();
+        if (!in_array($this->container['cloneMetadata'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'cloneMetadata', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['passwordSaveOption'] === null) {
+            $invalidProperties[] = "'passwordSaveOption' can't be null";
+        }
+        $allowedValues = $this->getPasswordSaveOptionAllowableValues();
+        if (!in_array($this->container['passwordSaveOption'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'passwordSaveOption', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['headerFootersComparison'] === null) {
+            $invalidProperties[] = "'headerFootersComparison' can't be null";
+        }
+        if ($this->container['paperSize'] === null) {
+            $invalidProperties[] = "'paperSize' can't be null";
+        }
+        $allowedValues = $this->getPaperSizeAllowableValues();
+        if (!in_array($this->container['paperSize'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'paperSize', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['sensitivityOfComparison'] === null) {
+            $invalidProperties[] = "'sensitivityOfComparison' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,7 +489,17 @@ class Settings implements ArrayAccess
         if ($this->container['showDeletedContent'] === null) {
             return false;
         }
+        if ($this->container['showInsertedContent'] === null) {
+            return false;
+        }
         if ($this->container['styleChangeDetection'] === null) {
+            return false;
+        }
+        if ($this->container['detailsLevel'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getDetailsLevelAllowableValues();
+        if (!in_array($this->container['detailsLevel'], $allowedValues)) {
             return false;
         }
         if ($this->container['useFramesForDelInsElements'] === null) {
@@ -326,7 +508,37 @@ class Settings implements ArrayAccess
         if ($this->container['calculateComponentCoordinates'] === null) {
             return false;
         }
-        if ($this->container['markDeletedInsertedContentDeep'] === null) {
+        if ($this->container['markChangedContent'] === null) {
+            return false;
+        }
+        if ($this->container['markNestedContent'] === null) {
+            return false;
+        }
+        if ($this->container['cloneMetadata'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getCloneMetadataAllowableValues();
+        if (!in_array($this->container['cloneMetadata'], $allowedValues)) {
+            return false;
+        }
+        if ($this->container['passwordSaveOption'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getPasswordSaveOptionAllowableValues();
+        if (!in_array($this->container['passwordSaveOption'], $allowedValues)) {
+            return false;
+        }
+        if ($this->container['headerFootersComparison'] === null) {
+            return false;
+        }
+        if ($this->container['paperSize'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getPaperSizeAllowableValues();
+        if (!in_array($this->container['paperSize'], $allowedValues)) {
+            return false;
+        }
+        if ($this->container['sensitivityOfComparison'] === null) {
             return false;
         }
         return true;
@@ -377,6 +589,30 @@ class Settings implements ArrayAccess
     public function setShowDeletedContent($showDeletedContent)
     {
         $this->container['showDeletedContent'] = $showDeletedContent;
+
+        return $this;
+    }
+
+    /*
+     * Gets showInsertedContent
+     *
+     * @return bool
+     */
+    public function getShowInsertedContent()
+    {
+        return $this->container['showInsertedContent'];
+    }
+
+    /*
+     * Sets showInsertedContent
+     *
+     * @param bool $showInsertedContent Indicates whether to show inserted components in resultant document or not
+     *
+     * @return $this
+     */
+    public function setShowInsertedContent($showInsertedContent)
+    {
+        $this->container['showInsertedContent'] = $showInsertedContent;
 
         return $this;
     }
@@ -454,25 +690,25 @@ class Settings implements ArrayAccess
     }
 
     /*
-     * Gets styleChangedItemsStyle
+     * Gets changedItemsStyle
      *
      * @return \GroupDocs\Comparison\Model\ItemsStyle
      */
-    public function getStyleChangedItemsStyle()
+    public function getChangedItemsStyle()
     {
-        return $this->container['styleChangedItemsStyle'];
+        return $this->container['changedItemsStyle'];
     }
 
     /*
-     * Sets styleChangedItemsStyle
+     * Sets changedItemsStyle
      *
-     * @param \GroupDocs\Comparison\Model\ItemsStyle $styleChangedItemsStyle Style for components with changed style
+     * @param \GroupDocs\Comparison\Model\ItemsStyle $changedItemsStyle Style for components with changed style
      *
      * @return $this
      */
-    public function setStyleChangedItemsStyle($styleChangedItemsStyle)
+    public function setChangedItemsStyle($changedItemsStyle)
     {
-        $this->container['styleChangedItemsStyle'] = $styleChangedItemsStyle;
+        $this->container['changedItemsStyle'] = $changedItemsStyle;
 
         return $this;
     }
@@ -502,25 +738,30 @@ class Settings implements ArrayAccess
     }
 
     /*
-     * Gets detailLevel
+     * Gets detailsLevel
      *
      * @return string
      */
-    public function getDetailLevel()
+    public function getDetailsLevel()
     {
-        return $this->container['detailLevel'];
+        return $this->container['detailsLevel'];
     }
 
     /*
-     * Sets detailLevel
+     * Sets detailsLevel
      *
-     * @param string $detailLevel Gets of sets the comparison detalisation level
+     * @param string $detailsLevel Gets of sets the comparison details level
      *
      * @return $this
      */
-    public function setDetailLevel($detailLevel)
+    public function setDetailsLevel($detailsLevel)
     {
-        $this->container['detailLevel'] = $detailLevel;
+        $allowedValues = $this->getDetailsLevelAllowableValues();
+        if ((!is_numeric($detailsLevel) && !in_array($detailsLevel, $allowedValues)) || (is_numeric($detailsLevel) && !in_array($allowedValues[$detailsLevel], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'detailsLevel', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
+        $this->container['detailsLevel'] = $detailsLevel;
 
         return $this;
     }
@@ -574,25 +815,49 @@ class Settings implements ArrayAccess
     }
 
     /*
-     * Gets markDeletedInsertedContentDeep
+     * Gets markChangedContent
      *
      * @return bool
      */
-    public function getMarkDeletedInsertedContentDeep()
+    public function getMarkChangedContent()
     {
-        return $this->container['markDeletedInsertedContentDeep'];
+        return $this->container['markChangedContent'];
     }
 
     /*
-     * Sets markDeletedInsertedContentDeep
+     * Sets markChangedContent
      *
-     * @param bool $markDeletedInsertedContentDeep Indicates whether to accept inserted/deleted styles for all children of inserted/deleted components
+     * @param bool $markChangedContent Indicates whether to use frames for shapes in Word Processing and for rectangles in Image documents
      *
      * @return $this
      */
-    public function setMarkDeletedInsertedContentDeep($markDeletedInsertedContentDeep)
+    public function setMarkChangedContent($markChangedContent)
     {
-        $this->container['markDeletedInsertedContentDeep'] = $markDeletedInsertedContentDeep;
+        $this->container['markChangedContent'] = $markChangedContent;
+
+        return $this;
+    }
+
+    /*
+     * Gets markNestedContent
+     *
+     * @return bool
+     */
+    public function getMarkNestedContent()
+    {
+        return $this->container['markNestedContent'];
+    }
+
+    /*
+     * Sets markNestedContent
+     *
+     * @param bool $markNestedContent Gets or sets a value indicating whether to mark the children of the deleted or inserted element as deleted or inserted
+     *
+     * @return $this
+     */
+    public function setMarkNestedContent($markNestedContent)
+    {
+        $this->container['markNestedContent'] = $markNestedContent;
 
         return $this;
     }
@@ -616,6 +881,11 @@ class Settings implements ArrayAccess
      */
     public function setCloneMetadata($cloneMetadata)
     {
+        $allowedValues = $this->getCloneMetadataAllowableValues();
+        if ((!is_numeric($cloneMetadata) && !in_array($cloneMetadata, $allowedValues)) || (is_numeric($cloneMetadata) && !in_array($allowedValues[$cloneMetadata], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'cloneMetadata', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
         $this->container['cloneMetadata'] = $cloneMetadata;
 
         return $this;
@@ -664,6 +934,11 @@ class Settings implements ArrayAccess
      */
     public function setPasswordSaveOption($passwordSaveOption)
     {
+        $allowedValues = $this->getPasswordSaveOptionAllowableValues();
+        if ((!is_numeric($passwordSaveOption) && !in_array($passwordSaveOption, $allowedValues)) || (is_numeric($passwordSaveOption) && !in_array($allowedValues[$passwordSaveOption], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'passwordSaveOption', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
         $this->container['passwordSaveOption'] = $passwordSaveOption;
 
         return $this;
@@ -720,7 +995,7 @@ class Settings implements ArrayAccess
     /*
      * Gets originalSize
      *
-     * @return \GroupDocs\Comparison\Model\OriginalSize
+     * @return \GroupDocs\Comparison\Model\Size
      */
     public function getOriginalSize()
     {
@@ -730,13 +1005,90 @@ class Settings implements ArrayAccess
     /*
      * Sets originalSize
      *
-     * @param \GroupDocs\Comparison\Model\OriginalSize $originalSize Gets or sets original document size when picture is compared with other different formats
+     * @param \GroupDocs\Comparison\Model\Size $originalSize Gets or sets original document size when picture is compared with other different formats
      *
      * @return $this
      */
     public function setOriginalSize($originalSize)
     {
         $this->container['originalSize'] = $originalSize;
+
+        return $this;
+    }
+
+    /*
+     * Gets headerFootersComparison
+     *
+     * @return bool
+     */
+    public function getHeaderFootersComparison()
+    {
+        return $this->container['headerFootersComparison'];
+    }
+
+    /*
+     * Sets headerFootersComparison
+     *
+     * @param bool $headerFootersComparison Control to turn on comparison of header/footer contents
+     *
+     * @return $this
+     */
+    public function setHeaderFootersComparison($headerFootersComparison)
+    {
+        $this->container['headerFootersComparison'] = $headerFootersComparison;
+
+        return $this;
+    }
+
+    /*
+     * Gets paperSize
+     *
+     * @return string
+     */
+    public function getPaperSize()
+    {
+        return $this->container['paperSize'];
+    }
+
+    /*
+     * Sets paperSize
+     *
+     * @param string $paperSize Gets or sets the result document paper size
+     *
+     * @return $this
+     */
+    public function setPaperSize($paperSize)
+    {
+        $allowedValues = $this->getPaperSizeAllowableValues();
+        if ((!is_numeric($paperSize) && !in_array($paperSize, $allowedValues)) || (is_numeric($paperSize) && !in_array($allowedValues[$paperSize], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'paperSize', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
+        $this->container['paperSize'] = $paperSize;
+
+        return $this;
+    }
+
+    /*
+     * Gets sensitivityOfComparison
+     *
+     * @return int
+     */
+    public function getSensitivityOfComparison()
+    {
+        return $this->container['sensitivityOfComparison'];
+    }
+
+    /*
+     * Sets sensitivityOfComparison
+     *
+     * @param int $sensitivityOfComparison Gets or sets a sensitivity of comparison. Default is 75
+     *
+     * @return $this
+     */
+    public function setSensitivityOfComparison($sensitivityOfComparison)
+    {
+        $this->container['sensitivityOfComparison'] = $sensitivityOfComparison;
 
         return $this;
     }

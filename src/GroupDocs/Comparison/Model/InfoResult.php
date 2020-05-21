@@ -1,8 +1,8 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="Options.php">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ * <copyright company="Aspose Pty Ltd" file="InfoResult.php">
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,20 +32,20 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * Options
+ * InfoResult
  *
- * @description Defines comparison options
+ * @description Represents document information
  */
-class Options implements ArrayAccess
+class InfoResult implements ArrayAccess
 {
-    const DISCRIMINATOR = 'Type';
+    const DISCRIMINATOR = null;
 
     /*
      * The original name of the model.
      *
      * @var string
      */
-    protected static $swaggerModelName = "Options";
+    protected static $swaggerModelName = "InfoResult";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -53,10 +53,10 @@ class Options implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'sourceFile' => '\GroupDocs\Comparison\Model\FileInfo',
-        'targetFiles' => '\GroupDocs\Comparison\Model\FileInfo[]',
-        'settings' => '\GroupDocs\Comparison\Model\Settings',
-        'outputPath' => 'string'
+        'format' => 'string',
+        'extension' => 'string',
+        'size' => 'int',
+        'pageCount' => 'int'
     ];
 
     /*
@@ -65,10 +65,10 @@ class Options implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'sourceFile' => null,
-        'targetFiles' => null,
-        'settings' => null,
-        'outputPath' => null
+        'format' => null,
+        'extension' => null,
+        'size' => 'int64',
+        'pageCount' => 'int32'
     ];
 
     /*
@@ -98,10 +98,10 @@ class Options implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'sourceFile' => 'SourceFile',
-        'targetFiles' => 'TargetFiles',
-        'settings' => 'Settings',
-        'outputPath' => 'OutputPath'
+        'format' => 'Format',
+        'extension' => 'Extension',
+        'size' => 'Size',
+        'pageCount' => 'PageCount'
     ];
 
     /*
@@ -110,10 +110,10 @@ class Options implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'sourceFile' => 'setSourceFile',
-        'targetFiles' => 'setTargetFiles',
-        'settings' => 'setSettings',
-        'outputPath' => 'setOutputPath'
+        'format' => 'setFormat',
+        'extension' => 'setExtension',
+        'size' => 'setSize',
+        'pageCount' => 'setPageCount'
     ];
 
     /*
@@ -122,10 +122,10 @@ class Options implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'sourceFile' => 'getSourceFile',
-        'targetFiles' => 'getTargetFiles',
-        'settings' => 'getSettings',
-        'outputPath' => 'getOutputPath'
+        'format' => 'getFormat',
+        'extension' => 'getExtension',
+        'size' => 'getSize',
+        'pageCount' => 'getPageCount'
     ];
 
     /*
@@ -188,14 +188,10 @@ class Options implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['sourceFile'] = isset($data['sourceFile']) ? $data['sourceFile'] : null;
-        $this->container['targetFiles'] = isset($data['targetFiles']) ? $data['targetFiles'] : null;
-        $this->container['settings'] = isset($data['settings']) ? $data['settings'] : null;
-        $this->container['outputPath'] = isset($data['outputPath']) ? $data['outputPath'] : null;
-
-        // Initialize discriminator property with the model name.
-        $discriminator = array_search('Type', self::$attributeMap);
-        $this->container[$discriminator] = static::$swaggerModelName;
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
+        $this->container['extension'] = isset($data['extension']) ? $data['extension'] : null;
+        $this->container['size'] = isset($data['size']) ? $data['size'] : null;
+        $this->container['pageCount'] = isset($data['pageCount']) ? $data['pageCount'] : null;
     }
 
     /*
@@ -207,6 +203,12 @@ class Options implements ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['size'] === null) {
+            $invalidProperties[] = "'size' can't be null";
+        }
+        if ($this->container['pageCount'] === null) {
+            $invalidProperties[] = "'pageCount' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -219,102 +221,108 @@ class Options implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['size'] === null) {
+            return false;
+        }
+        if ($this->container['pageCount'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /*
-     * Gets sourceFile
-     *
-     * @return \GroupDocs\Comparison\Model\FileInfo
-     */
-    public function getSourceFile()
-    {
-        return $this->container['sourceFile'];
-    }
-
-    /*
-     * Sets sourceFile
-     *
-     * @param \GroupDocs\Comparison\Model\FileInfo $sourceFile Information about source file
-     *
-     * @return $this
-     */
-    public function setSourceFile($sourceFile)
-    {
-        $this->container['sourceFile'] = $sourceFile;
-
-        return $this;
-    }
-
-    /*
-     * Gets targetFiles
-     *
-     * @return \GroupDocs\Comparison\Model\FileInfo[]
-     */
-    public function getTargetFiles()
-    {
-        return $this->container['targetFiles'];
-    }
-
-    /*
-     * Sets targetFiles
-     *
-     * @param \GroupDocs\Comparison\Model\FileInfo[] $targetFiles Information about target file(s)
-     *
-     * @return $this
-     */
-    public function setTargetFiles($targetFiles)
-    {
-        $this->container['targetFiles'] = $targetFiles;
-
-        return $this;
-    }
-
-    /*
-     * Gets settings
-     *
-     * @return \GroupDocs\Comparison\Model\Settings
-     */
-    public function getSettings()
-    {
-        return $this->container['settings'];
-    }
-
-    /*
-     * Sets settings
-     *
-     * @param \GroupDocs\Comparison\Model\Settings $settings Comparison settings
-     *
-     * @return $this
-     */
-    public function setSettings($settings)
-    {
-        $this->container['settings'] = $settings;
-
-        return $this;
-    }
-
-    /*
-     * Gets outputPath
+     * Gets format
      *
      * @return string
      */
-    public function getOutputPath()
+    public function getFormat()
     {
-        return $this->container['outputPath'];
+        return $this->container['format'];
     }
 
     /*
-     * Sets outputPath
+     * Sets format
      *
-     * @param string $outputPath Path to the resultant document (if not specified the document will not be saved)
+     * @param string $format Document format
      *
      * @return $this
      */
-    public function setOutputPath($outputPath)
+    public function setFormat($format)
     {
-        $this->container['outputPath'] = $outputPath;
+        $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /*
+     * Gets extension
+     *
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->container['extension'];
+    }
+
+    /*
+     * Sets extension
+     *
+     * @param string $extension Document file extension
+     *
+     * @return $this
+     */
+    public function setExtension($extension)
+    {
+        $this->container['extension'] = $extension;
+
+        return $this;
+    }
+
+    /*
+     * Gets size
+     *
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->container['size'];
+    }
+
+    /*
+     * Sets size
+     *
+     * @param int $size Document file size
+     *
+     * @return $this
+     */
+    public function setSize($size)
+    {
+        $this->container['size'] = $size;
+
+        return $this;
+    }
+
+    /*
+     * Gets pageCount
+     *
+     * @return int
+     */
+    public function getPageCount()
+    {
+        return $this->container['pageCount'];
+    }
+
+    /*
+     * Sets pageCount
+     *
+     * @param int $pageCount Pages count
+     *
+     * @return $this
+     */
+    public function setPageCount($pageCount)
+    {
+        $this->container['pageCount'] = $pageCount;
 
         return $this;
     }
