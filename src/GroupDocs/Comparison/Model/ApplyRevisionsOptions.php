@@ -2,7 +2,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ApplyRevisionsOptions.php">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,6 +55,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     protected static $swaggerTypes = [
         'sourceFile' => '\GroupDocs\Comparison\Model\FileInfo',
         'revisions' => '\GroupDocs\Comparison\Model\RevisionInfo[]',
+        'acceptAll' => 'bool',
+        'rejectAll' => 'bool',
         'outputPath' => 'string'
     ];
 
@@ -66,6 +68,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     protected static $swaggerFormats = [
         'sourceFile' => null,
         'revisions' => null,
+        'acceptAll' => null,
+        'rejectAll' => null,
         'outputPath' => null
     ];
 
@@ -98,6 +102,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     protected static $attributeMap = [
         'sourceFile' => 'SourceFile',
         'revisions' => 'Revisions',
+        'acceptAll' => 'AcceptAll',
+        'rejectAll' => 'RejectAll',
         'outputPath' => 'OutputPath'
     ];
 
@@ -109,6 +115,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     protected static $setters = [
         'sourceFile' => 'setSourceFile',
         'revisions' => 'setRevisions',
+        'acceptAll' => 'setAcceptAll',
+        'rejectAll' => 'setRejectAll',
         'outputPath' => 'setOutputPath'
     ];
 
@@ -120,6 +128,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     protected static $getters = [
         'sourceFile' => 'getSourceFile',
         'revisions' => 'getRevisions',
+        'acceptAll' => 'getAcceptAll',
+        'rejectAll' => 'getRejectAll',
         'outputPath' => 'getOutputPath'
     ];
 
@@ -185,6 +195,8 @@ class ApplyRevisionsOptions implements ArrayAccess
     {
         $this->container['sourceFile'] = isset($data['sourceFile']) ? $data['sourceFile'] : null;
         $this->container['revisions'] = isset($data['revisions']) ? $data['revisions'] : null;
+        $this->container['acceptAll'] = isset($data['acceptAll']) ? $data['acceptAll'] : null;
+        $this->container['rejectAll'] = isset($data['rejectAll']) ? $data['rejectAll'] : null;
         $this->container['outputPath'] = isset($data['outputPath']) ? $data['outputPath'] : null;
     }
 
@@ -197,6 +209,12 @@ class ApplyRevisionsOptions implements ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['acceptAll'] === null) {
+            $invalidProperties[] = "'acceptAll' can't be null";
+        }
+        if ($this->container['rejectAll'] === null) {
+            $invalidProperties[] = "'rejectAll' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -209,6 +227,12 @@ class ApplyRevisionsOptions implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['acceptAll'] === null) {
+            return false;
+        }
+        if ($this->container['rejectAll'] === null) {
+            return false;
+        }
         return true;
     }
 
@@ -257,6 +281,54 @@ class ApplyRevisionsOptions implements ArrayAccess
     public function setRevisions($revisions)
     {
         $this->container['revisions'] = $revisions;
+
+        return $this;
+    }
+
+    /*
+     * Gets acceptAll
+     *
+     * @return bool
+     */
+    public function getAcceptAll()
+    {
+        return $this->container['acceptAll'];
+    }
+
+    /*
+     * Sets acceptAll
+     *
+     * @param bool $acceptAll Indicates whether to apply all revisions in the document
+     *
+     * @return $this
+     */
+    public function setAcceptAll($acceptAll)
+    {
+        $this->container['acceptAll'] = $acceptAll;
+
+        return $this;
+    }
+
+    /*
+     * Gets rejectAll
+     *
+     * @return bool
+     */
+    public function getRejectAll()
+    {
+        return $this->container['rejectAll'];
+    }
+
+    /*
+     * Sets rejectAll
+     *
+     * @param bool $rejectAll Indicates whether to reject all revisions in the document
+     *
+     * @return $this
+     */
+    public function setRejectAll($rejectAll)
+    {
+        $this->container['rejectAll'] = $rejectAll;
 
         return $this;
     }

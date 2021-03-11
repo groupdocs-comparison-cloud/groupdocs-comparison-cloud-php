@@ -2,7 +2,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="BaseApiTest.php">
-*   Copyright (c) 2003-2020 Aspose Pty Ltd
+*   Copyright (c) 2003-2021 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,7 @@ use PHPUnit\Framework\TestCase;
 use GroupDocs\Comparison\Configuration;
 use GroupDocs\Comparison\InfoApi;
 use GroupDocs\Comparison\CompareApi;
+use GroupDocs\Comparison\ReviewApi;
 use GroupDocs\Comparison\StorageApi;
 use GroupDocs\Comparison\FileApi;
 use GroupDocs\Comparison\FolderApi;
@@ -44,6 +45,7 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
 
     protected static $infoApi;
     protected static $compareApi;
+    protected static $reviewApi;
     protected static $storageApi;
     protected static $fileApi;
     protected static $folderApi;
@@ -91,6 +93,7 @@ abstract class BaseApiTest extends \PHPUnit_Framework_TestCase
 
         self::$infoApi = new InfoApi(self::$comparisonConfig);
         self::$compareApi = new CompareApi(self::$comparisonConfig);
+        self::$reviewApi = new ReviewApi(self::$comparisonConfig);
         self::$storageApi = new StorageApi(self::$comparisonConfig);
         self::$fileApi = new FileApi(self::$comparisonConfig);
         self::$folderApi = new FolderApi(self::$comparisonConfig);

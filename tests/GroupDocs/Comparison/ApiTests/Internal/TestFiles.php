@@ -3,7 +3,7 @@
 /*
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="TestFiles.php">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -46,6 +46,7 @@ class TestFiles
     public static $SourceSlide;
     public static $SourceText;
     public static $SourceWord;
+    public static $SourceWithRevs;
 
     public static $SourceCellProtected;
     public static $SourceNoteProtected;
@@ -91,6 +92,7 @@ class TestFiles
         self::$SourceSlide = new TestFile("source.pptx", "source_files\\slide\\");
         self::$SourceText = new TestFile("source.txt", "source_files\\text\\");
         self::$SourceWord = new TestFile("source.docx", "source_files\\word\\");
+        self::$SourceWithRevs = new TestFile("source_with_revs.docx", "source_files\\word\\");
     
         self::$SourceCellProtected = new TestFile("source_protected.xlsx", "source_files\\cell\\", "1231");
         self::$SourceNoteProtected = new TestFile("source_protected.one", "source_files\\note\\", "123");
@@ -138,6 +140,7 @@ class TestFiles
             self::$SourceSlide,
             self::$SourceText,
             self::$SourceWord,
+            self::$SourceWithRevs,
         
             self::$SourceCellProtected,
             self::$SourceNoteProtected,
