@@ -79,6 +79,8 @@ class TestFiles
     public static $TargetWord2;
     public static $TargetWord1Protected;
     public static $TargetWord2Protected;
+
+    public static $NotExist;
     
     public static function init()
     {        
@@ -125,6 +127,8 @@ class TestFiles
         self::$TargetWord2 = new TestFile("target_2.docx", "target_files\\word\\");
         self::$TargetWord1Protected = new TestFile("target_1_protected.docx", "target_files\\word\\", "5784");
         self::$TargetWord2Protected = new TestFile("target_2_protected.docx", "target_files\\word\\", "5784");
+
+        self::$NotExist = new TestFile("NotExist.docx", "some-folder\\");
     }  
 
     public static function getTestFilesList()

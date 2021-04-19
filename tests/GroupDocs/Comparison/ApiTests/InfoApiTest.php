@@ -1,7 +1,7 @@
 <?php
 /**
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose Pty Ltd" file="ComparisonFormatsApiTest.php">
+* <copyright company="Aspose Pty Ltd" file="InfoApiTest.php">
 *   Copyright (c) 2003-2021 Aspose Pty Ltd
 * </copyright>
 * <summary>
@@ -28,10 +28,12 @@
 namespace GroupDocs\Comparison\ApiTests;
 
 use GroupDocs\Comparison\Model\Requests;
+use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
 
 require_once "BaseApiTest.php";
+require_once "Internal\TestFile.php";
 
-class ComparisonFormatsApiTest extends BaseApiTest
+class InfoApiTest extends BaseApiTest
 {
     /**
      * Test case for getSupportedFileFormats
@@ -51,4 +53,25 @@ class ComparisonFormatsApiTest extends BaseApiTest
             $this->assertNotEmpty($format->getFileFormat());
         }
     }
+
+    public function testGetInfoReturnsFileNotFound()
+    {
+        $this->setExpectedException(
+            \GroupDocs\Comparison\ApiException::class, "Can't find file located at 'some-folder\\NotExist.docx'.");
+
+        $fileInfo = TestFiles::$NotExist->ToFileInfo();
+        $request = new Requests\getDocumentInfoRequest($fileInfo);
+       
+        $response = self::$infoApi->getDocumentInfo($request);
+    }
+
+    public function testGetInfo()
+    {
+        $fileInfo = TestFiles::$SourceWord->ToFileInfo();
+        $request = new Requests\getDocumentInfoRequest($fileInfo);
+       
+        $response = self::$infoApi->getDocumentInfo($request);
+        $this->assertFalse(empty($response));
+        $this->assertEquals(1, $response->getPageCount());
+    }    
 }

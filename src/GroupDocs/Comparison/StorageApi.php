@@ -130,9 +130,9 @@ class StorageApi
                 $error = json_decode($content);
 
                 $errorCode = $e->getCode();
-                $errorMessage = $error->Error != null && $error->Error->Message != null
-                    ? $error->Error->Message
-                    : $e->getMessage();
+                $errorMessage = $error != null && $error->message != null
+                    ? $error->message
+                    : ($error != null && $error->error != null && $error->error->message != null ? $error->error->message : $e->getMessage());
                 
                 throw new ApiException($errorMessage, $errorCode);
             }
@@ -399,9 +399,9 @@ class StorageApi
                 $error = json_decode($content);
 
                 $errorCode = $e->getCode();
-                $errorMessage = $error->Error != null && $error->Error->Message != null
-                    ? $error->Error->Message
-                    : $e->getMessage();
+                $errorMessage = $error != null && $error->message != null
+                    ? $error->message
+                    : ($error != null && $error->error != null && $error->error->message != null ? $error->error->message : $e->getMessage());
                 
                 throw new ApiException($errorMessage, $errorCode);
             }
@@ -677,9 +677,9 @@ class StorageApi
                 $error = json_decode($content);
 
                 $errorCode = $e->getCode();
-                $errorMessage = $error->Error != null && $error->Error->Message != null
-                    ? $error->Error->Message
-                    : $e->getMessage();
+                $errorMessage = $error != null && $error->message != null
+                    ? $error->message
+                    : ($error != null && $error->error != null && $error->error->message != null ? $error->error->message : $e->getMessage());
                 
                 throw new ApiException($errorMessage, $errorCode);
             }
@@ -965,9 +965,9 @@ class StorageApi
                 $error = json_decode($content);
 
                 $errorCode = $e->getCode();
-                $errorMessage = $error->Error != null && $error->Error->Message != null
-                    ? $error->Error->Message
-                    : $e->getMessage();
+                $errorMessage = $error != null && $error->message != null
+                    ? $error->message
+                    : ($error != null && $error->error != null && $error->error->message != null ? $error->error->message : $e->getMessage());
                 
                 throw new ApiException($errorMessage, $errorCode);
             }
