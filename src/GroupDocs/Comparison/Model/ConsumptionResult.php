@@ -1,7 +1,7 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="InfoResult.php">
+ * <copyright company="Aspose Pty Ltd" file="ConsumptionResult.php">
  *   Copyright (c) 2003-2022 Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -32,11 +32,11 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * InfoResult
+ * ConsumptionResult
  *
- * @description Represents document information
+ * @description Metered license consumption information
  */
-class InfoResult implements ArrayAccess
+class ConsumptionResult implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -45,7 +45,7 @@ class InfoResult implements ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = "InfoResult";
+    protected static $swaggerModelName = "ConsumptionResult";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -53,10 +53,8 @@ class InfoResult implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'format' => 'string',
-        'extension' => 'string',
-        'size' => 'int',
-        'pageCount' => 'int'
+        'credit' => 'float',
+        'quantity' => 'float'
     ];
 
     /*
@@ -65,10 +63,8 @@ class InfoResult implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'format' => null,
-        'extension' => null,
-        'size' => 'int64',
-        'pageCount' => 'int32'
+        'credit' => 'decimal',
+        'quantity' => 'decimal'
     ];
 
     /*
@@ -98,10 +94,8 @@ class InfoResult implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'format' => 'Format',
-        'extension' => 'Extension',
-        'size' => 'Size',
-        'pageCount' => 'PageCount'
+        'credit' => 'Credit',
+        'quantity' => 'Quantity'
     ];
 
     /*
@@ -110,10 +104,8 @@ class InfoResult implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'format' => 'setFormat',
-        'extension' => 'setExtension',
-        'size' => 'setSize',
-        'pageCount' => 'setPageCount'
+        'credit' => 'setCredit',
+        'quantity' => 'setQuantity'
     ];
 
     /*
@@ -122,10 +114,8 @@ class InfoResult implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'format' => 'getFormat',
-        'extension' => 'getExtension',
-        'size' => 'getSize',
-        'pageCount' => 'getPageCount'
+        'credit' => 'getCredit',
+        'quantity' => 'getQuantity'
     ];
 
     /*
@@ -188,10 +178,8 @@ class InfoResult implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
-        $this->container['extension'] = isset($data['extension']) ? $data['extension'] : null;
-        $this->container['size'] = isset($data['size']) ? $data['size'] : null;
-        $this->container['pageCount'] = isset($data['pageCount']) ? $data['pageCount'] : null;
+        $this->container['credit'] = isset($data['credit']) ? $data['credit'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
     }
 
     /*
@@ -203,11 +191,11 @@ class InfoResult implements ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['size'] === null) {
-            $invalidProperties[] = "'size' can't be null";
+        if ($this->container['credit'] === null) {
+            $invalidProperties[] = "'credit' can't be null";
         }
-        if ($this->container['pageCount'] === null) {
-            $invalidProperties[] = "'pageCount' can't be null";
+        if ($this->container['quantity'] === null) {
+            $invalidProperties[] = "'quantity' can't be null";
         }
         return $invalidProperties;
     }
@@ -221,10 +209,10 @@ class InfoResult implements ArrayAccess
     public function valid()
     {
 
-        if ($this->container['size'] === null) {
+        if ($this->container['credit'] === null) {
             return false;
         }
-        if ($this->container['pageCount'] === null) {
+        if ($this->container['quantity'] === null) {
             return false;
         }
         return true;
@@ -232,97 +220,49 @@ class InfoResult implements ArrayAccess
 
 
     /*
-     * Gets format
+     * Gets credit
      *
-     * @return string
+     * @return float
      */
-    public function getFormat()
+    public function getCredit()
     {
-        return $this->container['format'];
+        return $this->container['credit'];
     }
 
     /*
-     * Sets format
+     * Sets credit
      *
-     * @param string $format Document format
+     * @param float $credit Amount of used credits
      *
      * @return $this
      */
-    public function setFormat($format)
+    public function setCredit($credit)
     {
-        $this->container['format'] = $format;
+        $this->container['credit'] = $credit;
 
         return $this;
     }
 
     /*
-     * Gets extension
+     * Gets quantity
      *
-     * @return string
+     * @return float
      */
-    public function getExtension()
+    public function getQuantity()
     {
-        return $this->container['extension'];
+        return $this->container['quantity'];
     }
 
     /*
-     * Sets extension
+     * Sets quantity
      *
-     * @param string $extension Document file extension
+     * @param float $quantity Amount of MBs processed
      *
      * @return $this
      */
-    public function setExtension($extension)
+    public function setQuantity($quantity)
     {
-        $this->container['extension'] = $extension;
-
-        return $this;
-    }
-
-    /*
-     * Gets size
-     *
-     * @return int
-     */
-    public function getSize()
-    {
-        return $this->container['size'];
-    }
-
-    /*
-     * Sets size
-     *
-     * @param int $size Document file size
-     *
-     * @return $this
-     */
-    public function setSize($size)
-    {
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /*
-     * Gets pageCount
-     *
-     * @return int
-     */
-    public function getPageCount()
-    {
-        return $this->container['pageCount'];
-    }
-
-    /*
-     * Sets pageCount
-     *
-     * @param int $pageCount Pages count
-     *
-     * @return $this
-     */
-    public function setPageCount($pageCount)
-    {
-        $this->container['pageCount'] = $pageCount;
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
