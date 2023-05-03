@@ -2,7 +2,7 @@
 /**
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose Pty Ltd">
-*   Copyright (c) 2003-2022 Aspose Pty Ltd
+*   Copyright (c) 2003-2023 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,10 +33,10 @@ use GroupDocs\Comparison\Model\Settings;
 use GroupDocs\Comparison\Model\ItemsStyle;
 use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
 
-require_once "BaseApiTest.php";
+require_once "BaseApiTestCase.php";
 require_once "Internal\TestFile.php";
 
-class ComparisonChangesApiTest extends BaseApiTest
+class ComparisonChangesApiTest extends BaseApiTestCase
 {
     public function testChangesCell()
     {           
@@ -63,7 +63,7 @@ class ComparisonChangesApiTest extends BaseApiTest
     {           
         $options = $this->GetComparisonOptions(TestFiles::$SourceHtml, TestFiles::$TargetHtml);
         $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
-        $this->assertEquals(count($response), 3);
+        $this->assertEquals(count($response), 2);
     }  
     
     public function testChangesImage()

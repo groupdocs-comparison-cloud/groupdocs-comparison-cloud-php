@@ -2,7 +2,7 @@
 /**
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose Pty Ltd">
-*   Copyright (c) 2003-2022 Aspose Pty Ltd
+*   Copyright (c) 2003-2023 Aspose Pty Ltd
 * </copyright>
 * <summary>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,10 +34,10 @@ use GroupDocs\Comparison\Model\ItemsStyle;
 use GroupDocs\Comparison\Model\ChangeInfo;
 use GroupDocs\Viewer\ApiTests\Internal\TestFiles;
 
-require_once "BaseApiTest.php";
+require_once "BaseApiTestCase.php";
 require_once "Internal\TestFile.php";
 
-class ComparisonUpdatesApiTest extends BaseApiTest
+class ComparisonUpdatesApiTest extends BaseApiTestCase
 {
     public function testComparisonUpdatesCell()
     {           
