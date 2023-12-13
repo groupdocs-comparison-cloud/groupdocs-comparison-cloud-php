@@ -73,19 +73,20 @@ class ComparisonChangesApiTest extends BaseApiTestCase
         $this->assertEquals(count($response), 170);
     }  
     
-    public function testChangesNote()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
-        $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
-        $this->assertEquals(count($response), 12);
-    }  
+    // Not supported in linux
+    // public function testChangesNote()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
+    //     $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
+    //     $this->assertEquals(count($response), 12);
+    // }  
     
-    public function testChangesNoteProtected()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
-        $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
-        $this->assertEquals(count($response), 12);
-    }    
+    // public function testChangesNoteProtected()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
+    //     $response = self::$compareApi->postChanges(new Requests\postChangesRequest($options));
+    //     $this->assertEquals(count($response), 12);
+    // }    
     
     public function testChangesPdf()
     {           

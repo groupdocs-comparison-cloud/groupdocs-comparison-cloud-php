@@ -72,20 +72,21 @@ class ComparisonsApiTest extends BaseApiTestCase
         $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
         $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
+
+    // Not supported in linux
+    // public function testComparisonsNote()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
+    //     $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
+    //     $this->assertEquals($response->getRel(), $options->getOutputPath());
+    // }  
     
-    public function testComparisonsNote()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
-        $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getRel(), $options->getOutputPath());
-    }  
-    
-    public function testComparisonsNoteProtected()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
-        $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
-        $this->assertEquals($response->getRel(), $options->getOutputPath());
-    }    
+    // public function testComparisonsNoteProtected()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
+    //     $response = self::$compareApi->comparisons(new Requests\comparisonsRequest($options));
+    //     $this->assertEquals($response->getRel(), $options->getOutputPath());
+    // }    
     
     public function testComparisonsPdf()
     {           

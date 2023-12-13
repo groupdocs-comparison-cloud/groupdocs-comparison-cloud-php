@@ -74,19 +74,20 @@ class ComparisonUpdatesApiTest extends BaseApiTestCase
         $this->assertEquals($response->getRel(), $options->getOutputPath());
     }  
     
-    public function testComparisonUpdatesNote()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
-        $response = self::$compareApi->putChangesDocument(new Requests\putChangesDocumentRequest($options));
-        $this->assertEquals($response->getRel(), $options->getOutputPath());
-    }  
+    // Not supported in linux
+    // public function testComparisonUpdatesNote()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNote, TestFiles::$TargetNote);
+    //     $response = self::$compareApi->putChangesDocument(new Requests\putChangesDocumentRequest($options));
+    //     $this->assertEquals($response->getRel(), $options->getOutputPath());
+    // }  
     
-    public function testComparisonUpdatesNoteProtected()
-    {           
-        $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
-        $response = self::$compareApi->putChangesDocument(new Requests\putChangesDocumentRequest($options));
-        $this->assertEquals($response->getRel(), $options->getOutputPath());
-    }    
+    // public function testComparisonUpdatesNoteProtected()
+    // {           
+    //     $options = $this->GetComparisonOptions(TestFiles::$SourceNoteProtected, TestFiles::$TargetNoteProtected);
+    //     $response = self::$compareApi->putChangesDocument(new Requests\putChangesDocumentRequest($options));
+    //     $this->assertEquals($response->getRel(), $options->getOutputPath());
+    // }    
     
     public function testComparisonUpdatesPdf()
     {           
