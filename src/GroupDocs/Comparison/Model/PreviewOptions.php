@@ -1,7 +1,7 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="DiscUsage.php">
+ * <copyright company="Aspose Pty Ltd" file="PreviewOptions.php">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -32,11 +32,11 @@ use \ArrayAccess;
 use \GroupDocs\Comparison\ObjectSerializer;
 
 /*
- * DiscUsage
+ * PreviewOptions
  *
- * @description Class for disc space information.
+ * @description Defines preview options
  */
-class DiscUsage implements ArrayAccess
+class PreviewOptions implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -45,7 +45,7 @@ class DiscUsage implements ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = "DiscUsage";
+    protected static $swaggerModelName = "PreviewOptions";
 
     /*
      * Array of property to type mappings. Used for (de)serialization
@@ -53,8 +53,12 @@ class DiscUsage implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'usedSize' => 'int',
-        'totalSize' => 'int'
+        'fileInfo' => '\GroupDocs\Comparison\Model\FileInfo',
+        'format' => 'string',
+        'outputFolder' => 'string',
+        'width' => 'int',
+        'height' => 'int',
+        'pageNumbers' => 'int[]'
     ];
 
     /*
@@ -63,8 +67,12 @@ class DiscUsage implements ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'usedSize' => 'int64',
-        'totalSize' => 'int64'
+        'fileInfo' => null,
+        'format' => null,
+        'outputFolder' => null,
+        'width' => 'int32',
+        'height' => 'int32',
+        'pageNumbers' => 'int32'
     ];
 
     /*
@@ -94,8 +102,12 @@ class DiscUsage implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'usedSize' => 'UsedSize',
-        'totalSize' => 'TotalSize'
+        'fileInfo' => 'FileInfo',
+        'format' => 'Format',
+        'outputFolder' => 'OutputFolder',
+        'width' => 'Width',
+        'height' => 'Height',
+        'pageNumbers' => 'PageNumbers'
     ];
 
     /*
@@ -104,8 +116,12 @@ class DiscUsage implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'usedSize' => 'setUsedSize',
-        'totalSize' => 'setTotalSize'
+        'fileInfo' => 'setFileInfo',
+        'format' => 'setFormat',
+        'outputFolder' => 'setOutputFolder',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
+        'pageNumbers' => 'setPageNumbers'
     ];
 
     /*
@@ -114,8 +130,12 @@ class DiscUsage implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'usedSize' => 'getUsedSize',
-        'totalSize' => 'getTotalSize'
+        'fileInfo' => 'getFileInfo',
+        'format' => 'getFormat',
+        'outputFolder' => 'getOutputFolder',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
+        'pageNumbers' => 'getPageNumbers'
     ];
 
     /*
@@ -159,8 +179,25 @@ class DiscUsage implements ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const FORMAT_JPEG = 'Jpeg';
+    const FORMAT_PNG = 'Png';
+    const FORMAT_BMP = 'Bmp';
     
 
+    
+    /*
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFormatAllowableValues()
+    {
+        return [
+            self::FORMAT_JPEG,
+            self::FORMAT_PNG,
+            self::FORMAT_BMP,
+        ];
+    }
     
 
     /*
@@ -178,8 +215,12 @@ class DiscUsage implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['usedSize'] = isset($data['usedSize']) ? $data['usedSize'] : null;
-        $this->container['totalSize'] = isset($data['totalSize']) ? $data['totalSize'] : null;
+        $this->container['fileInfo'] = isset($data['fileInfo']) ? $data['fileInfo'] : null;
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
+        $this->container['outputFolder'] = isset($data['outputFolder']) ? $data['outputFolder'] : null;
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
+        $this->container['pageNumbers'] = isset($data['pageNumbers']) ? $data['pageNumbers'] : null;
     }
 
     /*
@@ -191,11 +232,22 @@ class DiscUsage implements ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['usedSize'] === null) {
-            $invalidProperties[] = "'usedSize' can't be null";
+        if ($this->container['format'] === null) {
+            $invalidProperties[] = "'format' can't be null";
         }
-        if ($this->container['totalSize'] === null) {
-            $invalidProperties[] = "'totalSize' can't be null";
+        $allowedValues = $this->getFormatAllowableValues();
+        if (!in_array($this->container['format'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'format', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['width'] === null) {
+            $invalidProperties[] = "'width' can't be null";
+        }
+        if ($this->container['height'] === null) {
+            $invalidProperties[] = "'height' can't be null";
         }
         return $invalidProperties;
     }
@@ -209,10 +261,17 @@ class DiscUsage implements ArrayAccess
     public function valid()
     {
 
-        if ($this->container['usedSize'] === null) {
+        if ($this->container['format'] === null) {
             return false;
         }
-        if ($this->container['totalSize'] === null) {
+        $allowedValues = $this->getFormatAllowableValues();
+        if (!in_array($this->container['format'], $allowedValues)) {
+            return false;
+        }
+        if ($this->container['width'] === null) {
+            return false;
+        }
+        if ($this->container['height'] === null) {
             return false;
         }
         return true;
@@ -220,49 +279,150 @@ class DiscUsage implements ArrayAccess
 
 
     /*
-     * Gets usedSize
+     * Gets fileInfo
      *
-     * @return int
+     * @return \GroupDocs\Comparison\Model\FileInfo
      */
-    public function getUsedSize()
+    public function getFileInfo()
     {
-        return $this->container['usedSize'];
+        return $this->container['fileInfo'];
     }
 
     /*
-     * Sets usedSize
+     * Sets fileInfo
      *
-     * @param int $usedSize Application used disc space.
+     * @param \GroupDocs\Comparison\Model\FileInfo $fileInfo Input file info
      *
      * @return $this
      */
-    public function setUsedSize($usedSize)
+    public function setFileInfo($fileInfo)
     {
-        $this->container['usedSize'] = $usedSize;
+        $this->container['fileInfo'] = $fileInfo;
 
         return $this;
     }
 
     /*
-     * Gets totalSize
+     * Gets format
      *
-     * @return int
+     * @return string
      */
-    public function getTotalSize()
+    public function getFormat()
     {
-        return $this->container['totalSize'];
+        return $this->container['format'];
     }
 
     /*
-     * Sets totalSize
+     * Sets format
      *
-     * @param int $totalSize Total disc space.
+     * @param string $format Preview image format
      *
      * @return $this
      */
-    public function setTotalSize($totalSize)
+    public function setFormat($format)
     {
-        $this->container['totalSize'] = $totalSize;
+        $allowedValues = $this->getFormatAllowableValues();
+        if ((!is_numeric($format) && !in_array($format, $allowedValues)) || (is_numeric($format) && !in_array($allowedValues[$format], $allowedValues))) {
+            throw new \InvalidArgumentException(sprintf("Invalid value for 'format', must be one of '%s'", implode("', '", $allowedValues)));
+        }
+			
+        $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /*
+     * Gets outputFolder
+     *
+     * @return string
+     */
+    public function getOutputFolder()
+    {
+        return $this->container['outputFolder'];
+    }
+
+    /*
+     * Sets outputFolder
+     *
+     * @param string $outputFolder Path to folder with preview results
+     *
+     * @return $this
+     */
+    public function setOutputFolder($outputFolder)
+    {
+        $this->container['outputFolder'] = $outputFolder;
+
+        return $this;
+    }
+
+    /*
+     * Gets width
+     *
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /*
+     * Sets width
+     *
+     * @param int $width Preview width
+     *
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /*
+     * Gets height
+     *
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /*
+     * Sets height
+     *
+     * @param int $height Preview height
+     *
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /*
+     * Gets pageNumbers
+     *
+     * @return int[]
+     */
+    public function getPageNumbers()
+    {
+        return $this->container['pageNumbers'];
+    }
+
+    /*
+     * Sets pageNumbers
+     *
+     * @param int[] $pageNumbers Page numbers that will be previewed.
+     *
+     * @return $this
+     */
+    public function setPageNumbers($pageNumbers)
+    {
+        $this->container['pageNumbers'] = $pageNumbers;
 
         return $this;
     }

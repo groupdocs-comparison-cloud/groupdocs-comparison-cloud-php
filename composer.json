@@ -1,7 +1,7 @@
 {
     "description": "This repository contains GroupDocs.Comparison Cloud SDK for PHP source code.",
     "name": "groupdocscloud/groupdocs-comparison-cloud",
-    "version": "24.2",
+    "version": "25.2",
     "license": "MIT",
     "type": "library",
     "keywords": [

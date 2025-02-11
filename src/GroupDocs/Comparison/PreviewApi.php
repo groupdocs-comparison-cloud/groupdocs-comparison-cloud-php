@@ -1,7 +1,7 @@
 <?php
 /*
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="LicenseApi.php">
+ * <copyright company="Aspose Pty Ltd" file="PreviewApi.php">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -39,7 +39,7 @@ use GroupDocs\Comparison\Model\Requests;
 /*
  * GroupDocs.Comparison for Cloud API Reference
  */
-class LicenseApi
+class PreviewApi
 {
     /*
      * Stores client instance
@@ -66,7 +66,7 @@ class LicenseApi
     protected $accessToken;
 
     /*
-     * Initialize a new instance of LicenseApi
+     * Initialize a new instance of PreviewApi
      * @param Configuration   $config configuration info
      * @param ClientInterface   $client client for calling api
      * @param HeaderSelector   $selector class for header selection
@@ -88,33 +88,37 @@ class LicenseApi
     }
 
     /*
-     * Operation getConsumptionCredit
+     * Operation preview
      *
-     * Get license consumption
+     * Creates a preview images of document pages and returns an array of links to saved result
+     *
+     * @param Requests\previewRequest $request is a request object for operation
      *
      * @throws \GroupDocs\Comparison\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \GroupDocs\Comparison\Model\ConsumptionResult
+     * @return \GroupDocs\Comparison\Model\Link[]
      */
-    public function getConsumptionCredit()
+    public function preview(Requests\previewRequest $request)
     {
-        list($response) = $this->getConsumptionCreditWithHttpInfo();
+        list($response) = $this->previewWithHttpInfo($request);
         return $response;
     }
 
     /*
-     * Operation getConsumptionCreditWithHttpInfo
+     * Operation previewWithHttpInfo
      *
-     * Get license consumption
+     * Creates a preview images of document pages and returns an array of links to saved result
+     *
+     * @param Requests\previewRequest $request is a request object for operation
      *
      * @throws \GroupDocs\Comparison\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \GroupDocs\Comparison\Model\ConsumptionResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \GroupDocs\Comparison\Model\Link[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getConsumptionCreditWithHttpInfo()
+    public function previewWithHttpInfo(Requests\previewRequest $request)
     {
-        $returnType = '\GroupDocs\Comparison\Model\ConsumptionResult';
-        $request = $this->getConsumptionCreditRequest();
+        $returnType = '\GroupDocs\Comparison\Model\Link[]';
+        $request = $this->previewRequest($request);
 
         try {
             $options = $this->_createHttpClientOption();
@@ -162,7 +166,7 @@ class LicenseApi
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             case 200:
-                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\GroupDocs\Comparison\Model\ConsumptionResult', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\GroupDocs\Comparison\Model\Link[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                 break;
             }
@@ -171,16 +175,18 @@ class LicenseApi
     }
 
     /*
-     * Operation getConsumptionCreditAsync
+     * Operation previewAsync
      *
-     * Get license consumption
+     * Creates a preview images of document pages and returns an array of links to saved result
+     *
+     * @param Requests\previewRequest $request is a request object for operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConsumptionCreditAsync() 
+    public function previewAsync(Requests\previewRequest $request) 
     {
-        return $this->getConsumptionCreditAsyncWithHttpInfo()
+        return $this->previewAsyncWithHttpInfo($request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -189,19 +195,19 @@ class LicenseApi
     }
 
     /*
-     * Operation getConsumptionCreditAsyncWithHttpInfo
+     * Operation previewAsyncWithHttpInfo
      *
-     * Get license consumption
+     * Creates a preview images of document pages and returns an array of links to saved result
      *
-     * @param Requests\getConsumptionCreditRequest $request is a request object for operation
+     * @param Requests\previewRequest $request is a request object for operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConsumptionCreditAsyncWithHttpInfo() 
+    public function previewAsyncWithHttpInfo(Requests\previewRequest $request) 
     {
-        $returnType = '\GroupDocs\Comparison\Model\ConsumptionResult';
-        $request = $this->getConsumptionCreditRequest();
+        $returnType = '\GroupDocs\Comparison\Model\Link[]';
+        $request = $this->previewRequest($request);
 
         return $this->client
             ->sendAsync($request, $this->_createHttpClientOption())
@@ -239,17 +245,21 @@ class LicenseApi
     }
 
     /*
-     * Create request for operation 'getConsumptionCredit'
+     * Create request for operation 'preview'
      *
-     * @param Requests\getConsumptionCreditRequest $request is a request object for operation
+     * @param Requests\previewRequest $request is a request object for operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getConsumptionCreditRequest()
+    protected function previewRequest(Requests\previewRequest $request)
     {
+        // verify the required parameter 'previewOptions' is set
+        if ($request->previewOptions === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $previewOptions when calling preview');
+        }
 
-        $resourcePath = '/comparison/consumption';
+        $resourcePath = '/comparison/preview';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -263,6 +273,13 @@ class LicenseApi
 
         // body params
         $_tempBody = null;
+        if (isset($request->previewOptions)) {
+            if (is_string($request->previewOptions)) {
+                $_tempBody = "\"" . $request->previewOptions . "\"";   
+            } else {
+                $_tempBody = $request->previewOptions;
+            }
+        }
 
         if ($multipart) {
             $headers= $this->headerSelector->selectHeadersForMultipart(
@@ -328,13 +345,13 @@ class LicenseApi
         );
     
         $req = new Request(
-            'GET',
+            'POST',
             $resourcePath,
             $headers,
             $httpBody
         );
         if ($this->config->getDebug()) {
-            $this->_writeRequestLog('GET', $resourcePath, $headers, $httpBody);
+            $this->_writeRequestLog('POST', $resourcePath, $headers, $httpBody);
         }
         
         return $req;
@@ -438,4 +455,53 @@ class LicenseApi
         }
     }
   
+}
+/*
+ * --------------------------------------------------------------------------------------------------------------------
+ * <copyright company="Aspose Pty Ltd" file="previewRequest.php">
+ *   Copyright (c) Aspose Pty Ltd
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------------------------------------------
+ */
+
+namespace GroupDocs\Comparison\Model\Requests;
+
+/*
+ * Request model for preview operation.
+ */
+class previewRequest
+{
+    /*
+     * Initializes a new instance of the previewRequest class.
+     *  
+     * @param \GroupDocs\Comparison\Model\PreviewOptions $previewOptions Preview options
+     */
+    public function __construct($previewOptions)             
+    {
+        $this->previewOptions = $previewOptions;
+    }
+
+    /*
+     * Preview options
+     */
+    public $previewOptions;
 }
